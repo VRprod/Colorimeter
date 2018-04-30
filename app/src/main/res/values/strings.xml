@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Colorimeter</string>
+
+    <string name="visualization_text">Hello World !</string>
+    <string name="background">BACKGROUND</string>
+    <string name="text">TEXT</string>
+    <string name="with_text">With Text</string>
+</resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.graphics.Color"/>
+        <import type="android.graphics.Typeface"/>
+        <variable name="color" type="com.vrprod.colorimeter.model.Color"/>
+        <variable name="selectedColor" type="com.vrprod.colorimeter.model.Color"/>
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeightSmall"
+        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+        android:orientation="horizontal"
+        android:background="@{color.codeHexadecimal.equals(selectedColor.codeHexadecimal) ? @color/light_grey : @android:color/white}">
+
+        <TextView
+            android:id="@+id/color_line_color"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="@{Color.parseColor(color.codeHexadecimal)}"/>
+
+        <TextView
+            android:id="@+id/color_line_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/color_line_color"
+            android:layout_toStartOf="@+id/color_line_codeHexadecimal"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@android:color/black"
+            android:typeface='@{color.codeHexadecimal.equals(selectedColor.codeHexadecimal) ? "bold" : "normal"}'
+            android:text="@{color.name}"/>
+
+        <TextView
+            android:id="@id/color_line_codeHexadecimal"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/black"
+            android:typeface='@{color.codeHexadecimal.equals(selectedColor.codeHexadecimal) ? "bold" : "normal"}'
+            android:text="@{color.codeHexadecimal}"/>
+
+    </RelativeLayout>
+</layout>

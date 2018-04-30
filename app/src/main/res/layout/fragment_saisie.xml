@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="java.lang.String"/>
+        <variable name="color" type="com.vrprod.colorimeter.model.Color"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:elevation="2dp"
+            android:background="@android:color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"
+                android:textColor="@android:color/black"
+                android:text="@{color.codeHexadecimal}"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp"
+            android:elevation="2dp"
+            android:background="@android:color/white">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <SeekBar
+                    android:id="@+id/sliderRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/valueRed"
+                    android:max="255"
+                    android:progress="@={color.codeRgbRed}"/>
+
+                <TextView
+                    android:id="@id/valueRed"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/red"
+                    android:text="@{String.valueOf(color.codeRgbRed)}"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <SeekBar
+                    android:id="@+id/sliderGreen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/valueGreen"
+                    android:max="255"
+                    android:progress="@={color.codeRgbGreen}"/>
+
+                <TextView
+                    android:id="@id/valueGreen"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/green"
+                    android:text="@{String.valueOf(color.codeRgbGreen)}"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <SeekBar
+                    android:id="@+id/sliderBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/valueBlue"
+                    android:max="255"
+                    android:progress="@={color.codeRgbBlue}"/>
+
+                <TextView
+                    android:id="@id/valueBlue"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue"
+                    android:text="@{String.valueOf(color.codeRgbBlue)}"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/listColors"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+</layout>
