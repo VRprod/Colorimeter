@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="java.lang.String"/>
         <variable name="color" type="com.vrprod.colorimeter.model.Color"/>
@@ -27,102 +28,116 @@
                 android:layout_centerInParent="true"
                 android:textColor="@{color.active ? @android:color/black : @android:color/darker_gray}"
                 android:text="@{color.codeHexadecimal}"/>
-
         </RelativeLayout>
 
-        <LinearLayout
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="10dp"
-            android:elevation="2dp"
-            android:background="@android:color/white">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
+            <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
-                <SeekBar
-                    android:id="@+id/sliderRed"
-                    android:layout_width="wrap_content"
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_toStartOf="@+id/valueRed"
-                    android:max="255"
-                    android:progress="@={color.codeRgbRed}"
-                    android:enabled="@{color.active}"/>
+                    app:layout_scrollFlags="scroll|enterAlways">
 
-                <TextView
-                    android:id="@id/valueRed"
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:textStyle="bold"
-                    android:textColor="@{color.active ? @color/red : @android:color/darker_gray}"
-                    android:text="@{String.valueOf(color.codeRgbRed)}"/>
-            </RelativeLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            android:elevation="2dp"
+                            android:background="@android:color/white">
 
-            <RelativeLayout
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <SeekBar
+                                    android:id="@+id/sliderRed"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_toStartOf="@+id/valueRed"
+                                    android:max="255"
+                                    android:progress="@={color.codeRgbRed}"
+                                    android:enabled="@{color.active}"/>
+
+                                <TextView
+                                    android:id="@id/valueRed"
+                                    android:layout_width="24dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:textStyle="bold"
+                                    android:textColor="@{color.active ? @color/red : @android:color/darker_gray}"
+                                    android:text="@{String.valueOf(color.codeRgbRed)}"/>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="10dp">
+
+                                <SeekBar
+                                    android:id="@+id/sliderGreen"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_toStartOf="@+id/valueGreen"
+                                    android:max="255"
+                                    android:progress="@={color.codeRgbGreen}"
+                                    android:enabled="@{color.active}"/>
+
+                                <TextView
+                                    android:id="@id/valueGreen"
+                                    android:layout_width="24dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:textStyle="bold"
+                                    android:textColor="@{color.active ? @color/green : @android:color/darker_gray}"
+                                    android:text="@{String.valueOf(color.codeRgbGreen)}"/>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="10dp">
+
+                                <SeekBar
+                                    android:id="@+id/sliderBlue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_toStartOf="@+id/valueBlue"
+                                    android:max="255"
+                                    android:progress="@={color.codeRgbBlue}"
+                                    android:enabled="@{color.active}"/>
+
+                                <TextView
+                                    android:id="@id/valueBlue"
+                                    android:layout_width="24dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:textStyle="bold"
+                                    android:textColor="@{color.active ? @color/blue : @android:color/darker_gray}"
+                                    android:text="@{String.valueOf(color.codeRgbBlue)}"/>
+                            </RelativeLayout>
+
+                    </LinearLayout>
+                </android.support.design.widget.CollapsingToolbarLayout>
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/listColors"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-                <SeekBar
-                    android:id="@+id/sliderGreen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_toStartOf="@+id/valueGreen"
-                    android:max="255"
-                    android:progress="@={color.codeRgbGreen}"
-                    android:enabled="@{color.active}"/>
-
-                <TextView
-                    android:id="@id/valueGreen"
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:textStyle="bold"
-                    android:textColor="@{color.active ? @color/green : @android:color/darker_gray}"
-                    android:text="@{String.valueOf(color.codeRgbGreen)}"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-
-                <SeekBar
-                    android:id="@+id/sliderBlue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_toStartOf="@+id/valueBlue"
-                    android:max="255"
-                    android:progress="@={color.codeRgbBlue}"
-                    android:enabled="@{color.active}"/>
-
-                <TextView
-                    android:id="@id/valueBlue"
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:textStyle="bold"
-                    android:textColor="@{color.active ? @color/blue : @android:color/darker_gray}"
-                    android:text="@{String.valueOf(color.codeRgbBlue)}"/>
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/listColors"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
+        </android.support.design.widget.CoordinatorLayout>
     </LinearLayout>
 </layout>
