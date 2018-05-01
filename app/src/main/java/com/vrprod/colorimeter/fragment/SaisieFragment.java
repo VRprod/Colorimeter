@@ -18,7 +18,6 @@ import com.vrprod.colorimeter.databinding.FragmentSaisieBinding;
 import com.vrprod.colorimeter.model.Color;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public abstract class SaisieFragment extends Fragment {
@@ -177,10 +176,6 @@ public abstract class SaisieFragment extends Fragment {
     protected RecyclerView recyclerView;
     protected Color color;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Nullable
     @Override
@@ -189,16 +184,12 @@ public abstract class SaisieFragment extends Fragment {
                 inflater, R.layout.fragment_saisie, container, false);
         binding.setColor(color);
         View view = binding.getRoot();
-        recyclerView = view.findViewById(R.id.listColors);
+        recyclerView = binding.listColors;
+        recyclerView.setAdapter(new RecyclerViewAdapter(getColors(), color));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), ((LinearLayoutManager) recyclerView.getLayoutManager()).getOrientation()));
         return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
     }
 
     protected List<Color> getColors() {
@@ -209,13 +200,5 @@ public abstract class SaisieFragment extends Fragment {
             }
         }
         return lstColors;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 }

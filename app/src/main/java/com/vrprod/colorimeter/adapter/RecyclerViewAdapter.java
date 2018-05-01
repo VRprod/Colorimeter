@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.vrprod.colorimeter.BR;
 import com.vrprod.colorimeter.R;
+import com.vrprod.colorimeter.listener.ColorLineListener;
 import com.vrprod.colorimeter.model.Color;
 
 import java.util.List;
@@ -32,8 +33,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Color color = data.get(position);
-        holder.bind(color);
+        holder.bind(data.get(position));
     }
 
     @Override
@@ -41,18 +41,31 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return (data == null) ? 0 : data.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         private final ViewDataBinding binding;
 
-        public ViewHolder(ViewDataBinding binding) {
+        private ViewHolder(ViewDataBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        public void bind(Object color) {
+        private void bind(Object color) {
             binding.setVariable(BR.color, color);
             binding.setVariable(BR.selectedColor, selectedColor);
+            binding.setVariable(BR.listener, getColorLineListener());
             binding.executePendingBindings();
         }
+    }
+
+    private ColorLineListener getColorLineListener() {
+        return new ColorLineListener() {
+            @Override
+            public void onClick(Color selectedColor, Color color) {
+                if (selectedColor.isActive()) {
+                    selectedColor.setName(color.getName());
+                    selectedColor.setCodeHexadecimal(color.getCodeHexadecimal());
+                }
+            }
+        };
     }
 }

@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <import type="android.graphics.Color"/>
-        <import type="android.graphics.Typeface"/>
         <variable name="color" type="com.vrprod.colorimeter.model.Color"/>
         <variable name="selectedColor" type="com.vrprod.colorimeter.model.Color"/>
+        <variable name="listener" type="com.vrprod.colorimeter.listener.ColorLineListener"/>
     </data>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,6 +13,8 @@
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:orientation="horizontal"
+        android:clickable="true"
+        android:onClick="@{() -> listener.onClick(selectedColor, color)}"
         android:background="@{color.codeHexadecimal.equals(selectedColor.codeHexadecimal) ? @color/light_grey : @android:color/white}">
 
         <TextView
@@ -32,7 +34,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:textColor="@android:color/black"
+            android:textColor="@{selectedColor.active ? @android:color/black : @android:color/darker_gray}"
             android:typeface='@{color.codeHexadecimal.equals(selectedColor.codeHexadecimal) ? "bold" : "normal"}'
             android:text="@{color.name}"/>
 
@@ -42,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:textColor="@android:color/black"
+            android:textColor="@{selectedColor.active ? @android:color/black : @android:color/darker_gray}"
             android:typeface='@{color.codeHexadecimal.equals(selectedColor.codeHexadecimal) ? "bold" : "normal"}'
             android:text="@{color.codeHexadecimal}"/>
 

@@ -5,7 +5,6 @@
         <import type="android.graphics.Color"/>
         <variable name="backgroundColor" type="com.vrprod.colorimeter.model.Color"/>
         <variable name="textColor" type="com.vrprod.colorimeter.model.Color"/>
-        <variable name="withText" type="com.vrprod.colorimeter.model.WithText"/>
     </data>
     <RelativeLayout
         xmlns:tools="http://schemas.android.com/tools"
@@ -21,7 +20,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             style="@style/visualization_text"
-            android:text='@{withText.withText ? @string/visualization_text : ""}'
+            android:text='@{textColor.active ? @string/visualization_text : ""}'
             android:background="@{Color.parseColor(backgroundColor.codeHexadecimal)}"
             android:textColor="@{Color.parseColor(textColor.codeHexadecimal)}"/>
 

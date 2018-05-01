@@ -1,23 +1,19 @@
 package com.vrprod.colorimeter.activity;
 
 import android.databinding.DataBindingUtil;
-import android.graphics.Typeface;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import com.vrprod.colorimeter.R;
 import com.vrprod.colorimeter.adapter.ViewPagerAdapter;
 import com.vrprod.colorimeter.databinding.ActivityMainBinding;
 import com.vrprod.colorimeter.model.Color;
-import com.vrprod.colorimeter.model.WithText;
 
 public class MainActivity extends AppCompatActivity {
     private Color backgroundColor;
     private Color textColor;
-    private WithText withText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +21,13 @@ public class MainActivity extends AppCompatActivity {
 
         backgroundColor = new Color("White", "#FFFFFF");
         textColor = new Color("Black", "#000000");
-        withText = new WithText(true);
 
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setBackgroundColor(backgroundColor);
         binding.setTextColor(textColor);
-        binding.setWithText(withText);
 
         // Init tabs
-        ViewPager viewPager = findViewById(R.id.viewpager);
+        ViewPager viewPager = binding.viewpager;
         if (viewPager != null) {
             viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
             TabLayout tabLayout = findViewById(R.id.tabs);
@@ -73,13 +67,5 @@ public class MainActivity extends AppCompatActivity {
 
     public void setTextColor(Color textColor) {
         this.textColor = textColor;
-    }
-
-    public WithText getWithText() {
-        return withText;
-    }
-
-    public void setWithText(WithText withText) {
-        this.withText = withText;
     }
 }

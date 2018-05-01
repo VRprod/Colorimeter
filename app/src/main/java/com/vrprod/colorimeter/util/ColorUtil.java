@@ -4,9 +4,9 @@ public class ColorUtil {
 
     public static String generateCodeHexadecimal(int codeRgbRed, int codeRgbGreen, int codeRgbBlue) {
         return new StringBuilder("#")
-                .append(String.format("%02X", Integer.valueOf(codeRgbRed)))
-                .append(String.format("%02X", Integer.valueOf(codeRgbGreen)))
-                .append(String.format("%02X", Integer.valueOf(codeRgbBlue)))
+                .append(String.format("%02X", codeRgbRed))
+                .append(String.format("%02X", codeRgbGreen))
+                .append(String.format("%02X", codeRgbBlue))
                 .toString();
     }
 

@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
-
-    <CheckBox
-        android:id="@+id/withtext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="color" type="com.vrprod.colorimeter.model.Color"/>
+    </data>
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/with_text"
-        android:labelFor="@id/withtext"
-        android:textColor="@android:color/black"/>
+        android:orientation="horizontal">
 
-</LinearLayout>
+        <CheckBox
+            android:id="@+id/with_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@={color.active}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/with_text"
+            android:labelFor="@id/with_text"
+            android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+</layout>

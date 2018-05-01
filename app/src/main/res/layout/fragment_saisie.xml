@@ -25,7 +25,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_centerInParent="true"
-                android:textColor="@android:color/black"
+                android:textColor="@{color.active ? @android:color/black : @android:color/darker_gray}"
                 android:text="@{color.codeHexadecimal}"/>
 
         </RelativeLayout>
@@ -52,7 +52,8 @@
                     android:layout_alignParentStart="true"
                     android:layout_toStartOf="@+id/valueRed"
                     android:max="255"
-                    android:progress="@={color.codeRgbRed}"/>
+                    android:progress="@={color.codeRgbRed}"
+                    android:enabled="@{color.active}"/>
 
                 <TextView
                     android:id="@id/valueRed"
@@ -60,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:textStyle="bold"
-                    android:textColor="@color/red"
+                    android:textColor="@{color.active ? @color/red : @android:color/darker_gray}"
                     android:text="@{String.valueOf(color.codeRgbRed)}"/>
             </RelativeLayout>
 
@@ -77,7 +78,8 @@
                     android:layout_alignParentStart="true"
                     android:layout_toStartOf="@+id/valueGreen"
                     android:max="255"
-                    android:progress="@={color.codeRgbGreen}"/>
+                    android:progress="@={color.codeRgbGreen}"
+                    android:enabled="@{color.active}"/>
 
                 <TextView
                     android:id="@id/valueGreen"
@@ -85,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:textStyle="bold"
-                    android:textColor="@color/green"
+                    android:textColor="@{color.active ? @color/green : @android:color/darker_gray}"
                     android:text="@{String.valueOf(color.codeRgbGreen)}"/>
             </RelativeLayout>
 
@@ -102,7 +104,8 @@
                     android:layout_alignParentStart="true"
                     android:layout_toStartOf="@+id/valueBlue"
                     android:max="255"
-                    android:progress="@={color.codeRgbBlue}"/>
+                    android:progress="@={color.codeRgbBlue}"
+                    android:enabled="@{color.active}"/>
 
                 <TextView
                     android:id="@id/valueBlue"
@@ -110,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:textStyle="bold"
-                    android:textColor="@color/blue"
+                    android:textColor="@{color.active ? @color/blue : @android:color/darker_gray}"
                     android:text="@{String.valueOf(color.codeRgbBlue)}"/>
             </RelativeLayout>
 

@@ -6,13 +6,13 @@ import android.databinding.Bindable;
 import com.android.databinding.library.baseAdapters.BR;
 import com.vrprod.colorimeter.util.ColorUtil;
 
-
 public class Color extends BaseObservable {
     private String name;
     private String codeHexadecimal;
     private int codeRgbRed;
     private int codeRgbGreen;
     private int codeRgbBlue;
+    private boolean isActive;
 
     public Color(String name, String codeHexadecimal) {
         this.name = name;
@@ -20,14 +20,16 @@ public class Color extends BaseObservable {
         this.codeRgbRed = ColorUtil.generateCodeRgbRed(this.codeHexadecimal);
         this.codeRgbGreen = ColorUtil.generateCodeRgbGreen(this.codeHexadecimal);
         this.codeRgbBlue = ColorUtil.generateCodeRgbBlue(this.codeHexadecimal);
+        this.isActive = true;
     }
 
-    public Color(String name, String codeHexadecimal, int codeRgbRed, int codeRgbGreen, int codeRgbBlue) {
+    public Color(String name, String codeHexadecimal, int codeRgbRed, int codeRgbGreen, int codeRgbBlue, boolean isActive) {
         this.name = name;
         this.codeHexadecimal = codeHexadecimal;
         this.codeRgbRed = codeRgbRed;
         this.codeRgbGreen = codeRgbGreen;
         this.codeRgbBlue = codeRgbBlue;
+        this.isActive = isActive;
     }
 
     @Bindable
@@ -90,5 +92,15 @@ public class Color extends BaseObservable {
         this.codeHexadecimal = ColorUtil.generateCodeHexadecimal(this.codeRgbRed, this.codeRgbGreen, this.codeRgbBlue);
         notifyPropertyChanged(BR.codeRgbBlue);
         notifyPropertyChanged(BR.codeHexadecimal);
+    }
+
+    @Bindable
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
+        notifyPropertyChanged(BR.active);
     }
 }
