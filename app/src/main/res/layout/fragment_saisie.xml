@@ -63,6 +63,10 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_toStartOf="@+id/valueRed"
                                     android:max="255"
+                                    android:maxHeight="2dp"
+                                    android:minHeight="2dp"
+                                    android:progressDrawable="@drawable/seekbar_red"
+                                    android:thumbTint="@color/red"
                                     android:progress="@={color.codeRgbRed}"
                                     android:enabled="@{color.active}"/>
 
@@ -89,6 +93,10 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_toStartOf="@+id/valueGreen"
                                     android:max="255"
+                                    android:maxHeight="2dp"
+                                    android:minHeight="2dp"
+                                    android:progressDrawable="@drawable/seekbar_green"
+                                    android:thumbTint="@color/green"
                                     android:progress="@={color.codeRgbGreen}"
                                     android:enabled="@{color.active}"/>
 
@@ -115,6 +123,10 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_toStartOf="@+id/valueBlue"
                                     android:max="255"
+                                    android:maxHeight="2dp"
+                                    android:minHeight="2dp"
+                                    android:progressDrawable="@drawable/seekbar_blue"
+                                    android:thumbTint="@color/blue"
                                     android:progress="@={color.codeRgbBlue}"
                                     android:enabled="@{color.active}"/>
 
