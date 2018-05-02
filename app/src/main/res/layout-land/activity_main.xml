@@ -19,7 +19,9 @@
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
-            style="@style/visualization_text"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:textStyle="bold"
             android:text='@{textColor.active ? @string/visualization_text : ""}'
             android:background="@{Color.parseColor(backgroundColor.codeHexadecimal)}"
             android:textColor="@{Color.parseColor(textColor.codeHexadecimal)}"/>
