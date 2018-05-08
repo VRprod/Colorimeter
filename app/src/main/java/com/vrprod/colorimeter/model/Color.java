@@ -32,14 +32,12 @@ public class Color extends BaseObservable {
         this.isActive = isActive;
     }
 
-    @Bindable
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-        notifyPropertyChanged(BR.name);
     }
 
     @Bindable

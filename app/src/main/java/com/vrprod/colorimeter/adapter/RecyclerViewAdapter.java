@@ -41,6 +41,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return (data == null) ? 0 : data.size();
     }
 
+    private ColorLineListener getColorLineListener() {
+        return new ColorLineListener() {
+            @Override
+            public void onClick(Color selectedColor, Color color) {
+                if (selectedColor.isActive()) {
+                    selectedColor.setName(color.getName());
+                    selectedColor.setCodeHexadecimal(color.getCodeHexadecimal());
+                }
+            }
+        };
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
         private final ViewDataBinding binding;
 
@@ -55,17 +67,5 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             binding.setVariable(BR.listener, getColorLineListener());
             binding.executePendingBindings();
         }
-    }
-
-    private ColorLineListener getColorLineListener() {
-        return new ColorLineListener() {
-            @Override
-            public void onClick(Color selectedColor, Color color) {
-                if (selectedColor.isActive()) {
-                    selectedColor.setName(color.getName());
-                    selectedColor.setCodeHexadecimal(color.getCodeHexadecimal());
-                }
-            }
-        };
     }
 }

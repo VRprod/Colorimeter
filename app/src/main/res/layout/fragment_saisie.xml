@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <import type="java.lang.String"/>
         <variable name="color" type="com.vrprod.colorimeter.model.Color"/>
+        <variable name="listener" type="com.vrprod.colorimeter.listener.SaisieFragmentListener"/>
     </data>
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,21 +17,23 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp"
-            android:elevation="2dp"
             android:background="@color/light_grey">
 
             <TextView
+                android:id="@+id/codeHexadecimal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_centerInParent="true"
                 android:textColor="@{color.active ? @android:color/black : @android:color/darker_gray}"
-                android:text="@{color.codeHexadecimal}"/>
+                android:text="@{color.codeHexadecimal}"
+                android:onClick="@{() -> listener.showDialogSaisie()}"/>
 
         </RelativeLayout>
 
         <android.support.design.widget.CoordinatorLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -49,7 +51,6 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:padding="10dp"
-                            android:elevation="2dp"
                             android:background="@android:color/white">
 
                             <RelativeLayout
@@ -78,7 +79,8 @@
                                     android:layout_alignParentEnd="true"
                                     android:textStyle="bold"
                                     android:textColor="@{color.active ? @color/red : @android:color/darker_gray}"
-                                    android:text="@{String.valueOf(color.codeRgbRed)}"/>
+                                    android:text="@{String.valueOf(color.codeRgbRed)}"
+                                    android:onClick="@{() -> listener.showDialogSaisie()}"/>
                             </RelativeLayout>
 
                             <RelativeLayout
@@ -108,7 +110,8 @@
                                     android:layout_alignParentEnd="true"
                                     android:textStyle="bold"
                                     android:textColor="@{color.active ? @color/green : @android:color/darker_gray}"
-                                    android:text="@{String.valueOf(color.codeRgbGreen)}"/>
+                                    android:text="@{String.valueOf(color.codeRgbGreen)}"
+                                    android:onClick="@{() -> listener.showDialogSaisie()}"/>
                             </RelativeLayout>
 
                             <RelativeLayout
@@ -138,7 +141,8 @@
                                     android:layout_alignParentEnd="true"
                                     android:textStyle="bold"
                                     android:textColor="@{color.active ? @color/blue : @android:color/darker_gray}"
-                                    android:text="@{String.valueOf(color.codeRgbBlue)}"/>
+                                    android:text="@{String.valueOf(color.codeRgbBlue)}"
+                                    android:onClick="@{() -> listener.showDialogSaisie()}"/>
                             </RelativeLayout>
 
                     </LinearLayout>

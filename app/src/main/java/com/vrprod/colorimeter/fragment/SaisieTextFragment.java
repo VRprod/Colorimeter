@@ -12,6 +12,7 @@ import com.vrprod.colorimeter.R;
 import com.vrprod.colorimeter.activity.MainActivity;
 import com.vrprod.colorimeter.databinding.FragmentSaisieBinding;
 import com.vrprod.colorimeter.databinding.WithTextBinding;
+import com.vrprod.colorimeter.listener.SaisieFragmentListener;
 
 public class SaisieTextFragment extends SaisieFragment {
 
@@ -35,5 +36,18 @@ public class SaisieTextFragment extends SaisieFragment {
         binding.setColor(color);
         ((FragmentSaisieBinding) DataBindingUtil.bind(view)).header.addView(binding.getRoot());
         return view;
+    }
+
+    @Override
+    protected SaisieFragmentListener getSaisieFragmentListener() {
+        return new SaisieFragmentListener() {
+            @Override
+            public void showDialogSaisie() {
+                SaisieDialogFragment dialog = new SaisieDialogFragment();
+                dialog.setTitle(getString(R.string.text_color));
+                dialog.setColor(((MainActivity) getActivity()).getTextColor());
+                dialog.show(getFragmentManager(), "SaisieTextDialog");
+            }
+        };
     }
 }

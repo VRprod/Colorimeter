@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.vrprod.colorimeter.R;
 import com.vrprod.colorimeter.adapter.RecyclerViewAdapter;
 import com.vrprod.colorimeter.databinding.FragmentSaisieBinding;
+import com.vrprod.colorimeter.listener.SaisieFragmentListener;
 import com.vrprod.colorimeter.model.Color;
 
 import java.util.ArrayList;
@@ -183,6 +184,7 @@ public abstract class SaisieFragment extends Fragment {
         FragmentSaisieBinding binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_saisie, container, false);
         binding.setColor(color);
+        binding.setListener(getSaisieFragmentListener());
         View view = binding.getRoot();
         recyclerView = binding.listColors;
         recyclerView.setAdapter(new RecyclerViewAdapter(getColors(), color));
@@ -191,6 +193,8 @@ public abstract class SaisieFragment extends Fragment {
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), ((LinearLayoutManager) recyclerView.getLayoutManager()).getOrientation()));
         return view;
     }
+
+    protected abstract SaisieFragmentListener getSaisieFragmentListener();
 
     protected List<Color> getColors() {
         if (lstColors == null) {

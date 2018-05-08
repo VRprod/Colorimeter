@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.vrprod.colorimeter.R;
 import com.vrprod.colorimeter.activity.MainActivity;
+import com.vrprod.colorimeter.listener.SaisieFragmentListener;
 
 public class SaisieBackgroundFragment extends SaisieFragment {
 
@@ -25,5 +27,18 @@ public class SaisieBackgroundFragment extends SaisieFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         color = ((MainActivity) getActivity()).getBackgroundColor();
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    protected SaisieFragmentListener getSaisieFragmentListener() {
+        return new SaisieFragmentListener() {
+            @Override
+            public void showDialogSaisie() {
+                SaisieDialogFragment dialog = new SaisieDialogFragment();
+                dialog.setTitle(getString(R.string.background_color));
+                dialog.setColor(((MainActivity) getActivity()).getBackgroundColor());
+                dialog.show(getFragmentManager(), "SaisieBackgroundDialog");
+            }
+        };
     }
 }

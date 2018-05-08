@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        backgroundColor = new Color("White", "#FFFFFF");
-        textColor = new Color("Black", "#000000");
+        backgroundColor= new Color("Black", "#000000");
+        textColor = new Color("White", "#FFFFFF");
 
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setBackgroundColor(backgroundColor);
@@ -40,8 +40,10 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putString("backgroundColor.name", backgroundColor.getName());
         outState.putString("backgroundColor.codeHexadecimal", backgroundColor.getCodeHexadecimal());
+        outState.putBoolean("backgroundColor.isActive", backgroundColor.isActive());
         outState.putString("textColor.name", textColor.getName());
         outState.putString("textColor.codeHexadecimal", textColor.getCodeHexadecimal());
+        outState.putBoolean("textColor.isActive", textColor.isActive());
     }
 
     @Override
@@ -49,8 +51,10 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         backgroundColor.setName(savedInstanceState.getString("backgroundColor.name"));
         backgroundColor.setCodeHexadecimal(savedInstanceState.getString("backgroundColor.codeHexadecimal"));
+        backgroundColor.setActive(savedInstanceState.getBoolean("backgroundColor.isActive"));
         textColor.setName(savedInstanceState.getString("textColor.name"));
         textColor.setCodeHexadecimal(savedInstanceState.getString("textColor.codeHexadecimal"));
+        textColor.setActive(savedInstanceState.getBoolean("textColor.isActive"));
     }
 
     public Color getBackgroundColor() {

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.graphics.Color"/>
         <variable name="backgroundColor" type="com.vrprod.colorimeter.model.Color"/>
         <variable name="textColor" type="com.vrprod.colorimeter.model.Color"/>
     </data>
     <RelativeLayout
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
