@@ -4,8 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.vrprod.colorimeter.fragment.SaisieBackgroundFragment;
-import com.vrprod.colorimeter.fragment.SaisieTextFragment;
+import com.vrprod.colorimeter.fragment.TabEditFragment;
+import com.vrprod.colorimeter.fragment.TabPickerFragment;
+import com.vrprod.colorimeter.fragment.TabPredefinedFragment;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
@@ -17,9 +18,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return SaisieBackgroundFragment.newInstance();
+                return new TabEditFragment();
             case 1:
-                return SaisieTextFragment.newInstance();
+                return new TabPredefinedFragment();
+//            case 2:
+//                return new TabPickerFragment();
         }
         return null;
     }
@@ -33,9 +36,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "BACKGROUND";
+                return "Edit";
             case 1:
-                return "TEXT";
+                return "Predefined";
+//            case 2:
+//                return "Picker";
         }
         return null;
     }

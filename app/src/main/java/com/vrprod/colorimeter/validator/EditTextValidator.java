@@ -1,8 +1,5 @@
 package com.vrprod.colorimeter.validator;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;

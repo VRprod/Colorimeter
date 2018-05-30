@@ -1,15 +1,12 @@
 <resources>
     <string name="app_name">Colorimeter</string>
 
-    <string name="visualization_text">Hello World !</string>
+    <string name="visualization_text_header">Hello World !</string>
+    <string name="visualization_text_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla nunc nec malesuada porttitor. Cras placerat nulla eu commodo facilisis. Nam volutpat faucibus justo sed mattis. Proin commodo, turpis in luctus cursus, lacus magna dictum ex, vitae tincidunt dui eros quis risus. Pellentesque vel massa quis est volutpat iaculis. Morbi sit amet ex vel augue cursus tempor. Aliquam ultricies dictum egestas. Aliquam non consectetur lorem. Suspendisse interdum tempus mi eget ornare. Pellentesque hendrerit sollicitudin tellus. Donec sit amet diam vel orci pharetra finibus. Suspendisse molestie ultricies mi, non egestas ipsum placerat sit amet. Morbi posuere ex in libero vehicula, in auctor tortor condimentum. Morbi tempus pellentesque ex ac vulputate.</string>
     <string name="background">BACKGROUND</string>
     <string name="text">TEXT</string>
     <string name="with_text">With Text</string>
 
-    <string name="background_color">Background Color</string>
-    <string name="text_color">Text Color</string>
-    <string name="ok">Ok</string>
-    <string name="cancel">Cancel</string>
     <string name="codeHexadecimal">Code Hexadecimal</string>
     <string name="codeHexadecimal_regex">^#([a-fA-F_0-9]){6}$</string>
     <string name="codeHexadecimal_error">Format : #000000</string>
@@ -18,7 +15,4 @@
     <string name="codeRgbBlue">Blue</string>
     <string name="codeRgb_regex">^[0-9]?[0-9]?[0-9]$</string>
     <string name="codeRgb_error">0 - 255</string>
-
-    <string name="navigation_drawer_open">navigation_drawer_open</string>
-    <string name="navigation_drawer_close">navigation_drawer_close</string>
 </resources>

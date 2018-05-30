@@ -13,35 +13,28 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vrprod.colorimeter.R;
+import com.vrprod.colorimeter.activity.MainActivity;
 import com.vrprod.colorimeter.adapter.RecyclerViewAdapter;
-import com.vrprod.colorimeter.databinding.FragmentSaisieBinding;
-import com.vrprod.colorimeter.listener.SaisieFragmentListener;
-import com.vrprod.colorimeter.model.Color;
-import com.vrprod.colorimeter.util.ColorUtil;
+import com.vrprod.colorimeter.databinding.TabPredefinedFragmentBinding;
+import com.vrprod.colorimeter.util.ColorUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public abstract class SaisieFragment extends Fragment {
-
-    protected RecyclerView recyclerView;
-    protected Color color;
+public class TabPredefinedFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        FragmentSaisieBinding binding = DataBindingUtil.inflate(
-                inflater, R.layout.fragment_saisie, container, false);
-        binding.setColor(color);
-        binding.setListener(getSaisieFragmentListener());
-        View view = binding.getRoot();
-        recyclerView = binding.listColors;
-        recyclerView.setAdapter(new RecyclerViewAdapter(ColorUtil.getColors(), color));
+
+        // Init DataBinding
+        TabPredefinedFragmentBinding binding = DataBindingUtil.inflate(
+                inflater, R.layout.tab_predefined_fragment, container, false);
+
+        // Init RecyclerView
+        RecyclerView recyclerView = binding.listColors;
+        recyclerView.setAdapter(new RecyclerViewAdapter(ColorUtils.getColors(), ((MainActivity) getActivity()).getBackgroundColor()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), ((LinearLayoutManager) recyclerView.getLayoutManager()).getOrientation()));
-        return view;
-    }
 
-    protected abstract SaisieFragmentListener getSaisieFragmentListener();
+        return binding.getRoot();
+    }
 }

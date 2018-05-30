@@ -4,7 +4,7 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
 import com.android.databinding.library.baseAdapters.BR;
-import com.vrprod.colorimeter.util.ColorUtil;
+import com.vrprod.colorimeter.util.ColorUtils;
 
 public class Color extends BaseObservable {
     private String name;
@@ -17,9 +17,9 @@ public class Color extends BaseObservable {
     public Color(String name, String codeHexadecimal) {
         this.name = name;
         this.codeHexadecimal = codeHexadecimal;
-        this.codeRgbRed = ColorUtil.generateCodeRgbRed(this.codeHexadecimal);
-        this.codeRgbGreen = ColorUtil.generateCodeRgbGreen(this.codeHexadecimal);
-        this.codeRgbBlue = ColorUtil.generateCodeRgbBlue(this.codeHexadecimal);
+        this.codeRgbRed = ColorUtils.generateCodeRgbRed(this.codeHexadecimal);
+        this.codeRgbGreen = ColorUtils.generateCodeRgbGreen(this.codeHexadecimal);
+        this.codeRgbBlue = ColorUtils.generateCodeRgbBlue(this.codeHexadecimal);
         this.isActive = true;
     }
 
@@ -47,9 +47,9 @@ public class Color extends BaseObservable {
 
     public void setCodeHexadecimal(String codeHexadecimal) {
         this.codeHexadecimal = codeHexadecimal;
-        this.codeRgbRed = ColorUtil.generateCodeRgbRed(this.codeHexadecimal);
-        this.codeRgbGreen = ColorUtil.generateCodeRgbGreen(this.codeHexadecimal);
-        this.codeRgbBlue = ColorUtil.generateCodeRgbBlue(this.codeHexadecimal);
+        this.codeRgbRed = ColorUtils.generateCodeRgbRed(this.codeHexadecimal);
+        this.codeRgbGreen = ColorUtils.generateCodeRgbGreen(this.codeHexadecimal);
+        this.codeRgbBlue = ColorUtils.generateCodeRgbBlue(this.codeHexadecimal);
         notifyPropertyChanged(BR.codeHexadecimal);
         notifyPropertyChanged(BR.codeRgbRed);
         notifyPropertyChanged(BR.codeRgbGreen);
@@ -63,7 +63,7 @@ public class Color extends BaseObservable {
 
     public void setCodeRgbRed(int codeRgbRed) {
         this.codeRgbRed = codeRgbRed;
-        this.codeHexadecimal = ColorUtil.generateCodeHexadecimal(this.codeRgbRed, this.codeRgbGreen, this.codeRgbBlue);
+        this.codeHexadecimal = ColorUtils.generateCodeHexadecimal(this.codeRgbRed, this.codeRgbGreen, this.codeRgbBlue);
         notifyPropertyChanged(BR.codeRgbRed);
         notifyPropertyChanged(BR.codeHexadecimal);
     }
@@ -75,7 +75,7 @@ public class Color extends BaseObservable {
 
     public void setCodeRgbGreen(int codeRgbGreen) {
         this.codeRgbGreen = codeRgbGreen;
-        this.codeHexadecimal = ColorUtil.generateCodeHexadecimal(this.codeRgbRed, this.codeRgbGreen, this.codeRgbBlue);
+        this.codeHexadecimal = ColorUtils.generateCodeHexadecimal(this.codeRgbRed, this.codeRgbGreen, this.codeRgbBlue);
         notifyPropertyChanged(BR.codeRgbGreen);
         notifyPropertyChanged(BR.codeHexadecimal);
     }
@@ -87,7 +87,7 @@ public class Color extends BaseObservable {
 
     public void setCodeRgbBlue(int codeRgbBlue) {
         this.codeRgbBlue = codeRgbBlue;
-        this.codeHexadecimal = ColorUtil.generateCodeHexadecimal(this.codeRgbRed, this.codeRgbGreen, this.codeRgbBlue);
+        this.codeHexadecimal = ColorUtils.generateCodeHexadecimal(this.codeRgbRed, this.codeRgbGreen, this.codeRgbBlue);
         notifyPropertyChanged(BR.codeRgbBlue);
         notifyPropertyChanged(BR.codeHexadecimal);
     }

@@ -16,11 +16,11 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private List<Color> data;
-    private Color selectedColor;
+    private Color color;
 
-    public RecyclerViewAdapter(List<Color> data, Color selectedColor) {
+    public RecyclerViewAdapter(List<Color> data, Color color) {
         this.data = data;
-        this.selectedColor = selectedColor;
+        this.color = color;
     }
 
     @NonNull
@@ -44,10 +44,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ColorLineListener getColorLineListener() {
         return new ColorLineListener() {
             @Override
-            public void onClick(Color selectedColor, Color color) {
-                if (selectedColor.isActive()) {
-                    selectedColor.setName(color.getName());
-                    selectedColor.setCodeHexadecimal(color.getCodeHexadecimal());
+            public void onClick(Color color, Color colorLine) {
+                if (color.isActive()) {
+                    color.setCodeHexadecimal(colorLine.getCodeHexadecimal());
                 }
             }
         };
@@ -61,9 +60,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             this.binding = binding;
         }
 
-        private void bind(Object color) {
+        private void bind(Object colorLine) {
+            binding.setVariable(BR.colorLine, colorLine);
             binding.setVariable(BR.color, color);
-            binding.setVariable(BR.selectedColor, selectedColor);
             binding.setVariable(BR.listener, getColorLineListener());
             binding.executePendingBindings();
         }

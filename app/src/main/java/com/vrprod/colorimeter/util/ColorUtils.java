@@ -5,7 +5,7 @@ import com.vrprod.colorimeter.model.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ColorUtil {
+public class ColorUtils {
 
     public static String generateCodeHexadecimal(int codeRgbRed, int codeRgbGreen, int codeRgbBlue) {
         return new StringBuilder("#")

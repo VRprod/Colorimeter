@@ -1,56 +1,38 @@
 package com.vrprod.colorimeter.fragment;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.vrprod.colorimeter.R;
 import com.vrprod.colorimeter.activity.MainActivity;
-import com.vrprod.colorimeter.databinding.DialogFragmentSaisieBinding;
-import com.vrprod.colorimeter.model.Color;
+import com.vrprod.colorimeter.databinding.TabEditFragmentBinding;
 import com.vrprod.colorimeter.validator.EditTextValidator;
 
-public class SaisieDialogFragment extends DialogFragment {
-    private String title;
-    private Color color;
+public class TabEditFragment extends Fragment {
 
-    @NonNull
+    @Nullable
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final DialogFragmentSaisieBinding binding = DataBindingUtil.inflate(
-                getActivity().getLayoutInflater(), R.layout.dialog_fragment_saisie, null, false);
-        binding.setColor(new Color(null, color.getCodeHexadecimal()));
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        final Dialog dialog =  new AlertDialog.Builder(getActivity())
-                .setTitle(title)
-                .setView(binding.getRoot())
-                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        String v = binding.codeHexadecimal.getEditText().getText().toString();
-                        color.setCodeHexadecimal(v);
-                    }
-                })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {}
-                })
-                .create();
+        // Init DataBinding
+        final TabEditFragmentBinding binding = DataBindingUtil.inflate(inflater, R.layout.tab_edit_fragment, container, false);
+        binding.setColor(((MainActivity) getActivity()).getBackgroundColor());
 
         // Code hexadecimal
         binding.codeHexadecimal.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
             @Override
             public void validate(View view) {
-                boolean isValid = SaisieDialogFragment.this.validate(view);
+                boolean isValid = TabEditFragment.this.validate(view);
                 if (isValid) {
-                    DialogFragmentSaisieBinding binding = DataBindingUtil.findBinding(view);
-                    binding.getColor().setCodeHexadecimal(binding.codeHexadecimal.getEditText().getText().toString());
+                    ((MainActivity) getActivity()).getBackgroundColor().setCodeHexadecimal(binding.codeHexadecimal.getEditText().getText().toString());
                 }
-                ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(isValid);
             }
         });
 
@@ -58,12 +40,10 @@ public class SaisieDialogFragment extends DialogFragment {
         binding.codeRgbRed.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
             @Override
             public void validate(View view) {
-                boolean isValid = SaisieDialogFragment.this.validate(view);
+                boolean isValid = TabEditFragment.this.validate(view);
                 if (isValid) {
-                    DialogFragmentSaisieBinding binding = DataBindingUtil.findBinding(view);
-                    binding.getColor().setCodeRgbRed(Integer.valueOf(binding.codeRgbRed.getEditText().getText().toString()));
+                    ((MainActivity) getActivity()).getBackgroundColor().setCodeRgbRed(Integer.valueOf(binding.codeRgbRed.getEditText().getText().toString()));
                 }
-                ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(isValid);
             }
         });
 
@@ -71,12 +51,10 @@ public class SaisieDialogFragment extends DialogFragment {
         binding.codeRgbGreen.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
             @Override
             public void validate(View view) {
-                boolean isValid = SaisieDialogFragment.this.validate(view);
+                boolean isValid = TabEditFragment.this.validate(view);
                 if (isValid) {
-                    DialogFragmentSaisieBinding binding = DataBindingUtil.findBinding(view);
-                    binding.getColor().setCodeRgbGreen(Integer.valueOf(binding.codeRgbGreen.getEditText().getText().toString()));
+                    ((MainActivity) getActivity()).getBackgroundColor().setCodeRgbGreen(Integer.valueOf(binding.codeRgbGreen.getEditText().getText().toString()));
                 }
-                ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(isValid);
             }
         });
 
@@ -84,20 +62,19 @@ public class SaisieDialogFragment extends DialogFragment {
         binding.codeRgbBlue.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
             @Override
             public void validate(View view) {
-                boolean isValid = SaisieDialogFragment.this.validate(view);
+                boolean isValid = TabEditFragment.this.validate(view);
                 if (isValid) {
-                    DialogFragmentSaisieBinding binding = DataBindingUtil.findBinding(view);
-                    binding.getColor().setCodeRgbBlue(Integer.valueOf(binding.codeRgbBlue.getEditText().getText().toString()));
+                    ((MainActivity) getActivity()).getBackgroundColor().setCodeRgbBlue(Integer.valueOf(binding.codeRgbBlue.getEditText().getText().toString()));
                 }
-                ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(isValid);
             }
         });
-        return dialog;
+
+        return binding.getRoot();
     }
 
     private boolean validate(View view) {
         boolean isValid = true;
-        DialogFragmentSaisieBinding binding = DataBindingUtil.findBinding(view);
+        TabEditFragmentBinding binding = DataBindingUtil.findBinding(view);
 
         // Code hexadecimal
         TextInputLayout editCodeHexadecimal = binding.codeHexadecimal;
@@ -154,21 +131,5 @@ public class SaisieDialogFragment extends DialogFragment {
         }
 
         return isValid;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 }
