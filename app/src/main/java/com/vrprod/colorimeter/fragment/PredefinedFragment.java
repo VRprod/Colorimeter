@@ -15,18 +15,18 @@ import android.view.ViewGroup;
 import com.vrprod.colorimeter.R;
 import com.vrprod.colorimeter.activity.MainActivity;
 import com.vrprod.colorimeter.adapter.RecyclerViewAdapter;
-import com.vrprod.colorimeter.databinding.TabPredefinedFragmentBinding;
+import com.vrprod.colorimeter.databinding.PredefinedFragmentBinding;
 import com.vrprod.colorimeter.util.ColorUtils;
 
-public class TabPredefinedFragment extends Fragment {
+public class PredefinedFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         // Init DataBinding
-        TabPredefinedFragmentBinding binding = DataBindingUtil.inflate(
-                inflater, R.layout.tab_predefined_fragment, container, false);
+        PredefinedFragmentBinding binding = DataBindingUtil.inflate(
+                inflater, R.layout.predefined_fragment, container, false);
 
         // Init RecyclerView
         RecyclerView recyclerView = binding.listColors;

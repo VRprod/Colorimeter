@@ -12,24 +12,25 @@ import android.view.ViewGroup;
 
 import com.vrprod.colorimeter.R;
 import com.vrprod.colorimeter.activity.MainActivity;
-import com.vrprod.colorimeter.databinding.TabEditFragmentBinding;
+import com.vrprod.colorimeter.databinding.EditFragmentBinding;
 import com.vrprod.colorimeter.validator.EditTextValidator;
 
-public class TabEditFragment extends Fragment {
+public class EditFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         // Init DataBinding
-        final TabEditFragmentBinding binding = DataBindingUtil.inflate(inflater, R.layout.tab_edit_fragment, container, false);
+        final EditFragmentBinding binding = DataBindingUtil.inflate(
+                inflater, R.layout.edit_fragment, container, false);
         binding.setColor(((MainActivity) getActivity()).getBackgroundColor());
 
         // Code hexadecimal
         binding.codeHexadecimal.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
             @Override
             public void validate(View view) {
-                boolean isValid = TabEditFragment.this.validate(view);
+                boolean isValid = EditFragment.this.validate(view);
                 if (isValid) {
                     ((MainActivity) getActivity()).getBackgroundColor().setCodeHexadecimal(binding.codeHexadecimal.getEditText().getText().toString());
                 }
@@ -40,7 +41,7 @@ public class TabEditFragment extends Fragment {
         binding.codeRgbRed.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
             @Override
             public void validate(View view) {
-                boolean isValid = TabEditFragment.this.validate(view);
+                boolean isValid = EditFragment.this.validate(view);
                 if (isValid) {
                     ((MainActivity) getActivity()).getBackgroundColor().setCodeRgbRed(Integer.valueOf(binding.codeRgbRed.getEditText().getText().toString()));
                 }
@@ -51,7 +52,7 @@ public class TabEditFragment extends Fragment {
         binding.codeRgbGreen.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
             @Override
             public void validate(View view) {
-                boolean isValid = TabEditFragment.this.validate(view);
+                boolean isValid = EditFragment.this.validate(view);
                 if (isValid) {
                     ((MainActivity) getActivity()).getBackgroundColor().setCodeRgbGreen(Integer.valueOf(binding.codeRgbGreen.getEditText().getText().toString()));
                 }
@@ -62,7 +63,7 @@ public class TabEditFragment extends Fragment {
         binding.codeRgbBlue.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
             @Override
             public void validate(View view) {
-                boolean isValid = TabEditFragment.this.validate(view);
+                boolean isValid = EditFragment.this.validate(view);
                 if (isValid) {
                     ((MainActivity) getActivity()).getBackgroundColor().setCodeRgbBlue(Integer.valueOf(binding.codeRgbBlue.getEditText().getText().toString()));
                 }
@@ -74,7 +75,7 @@ public class TabEditFragment extends Fragment {
 
     private boolean validate(View view) {
         boolean isValid = true;
-        TabEditFragmentBinding binding = DataBindingUtil.findBinding(view);
+        EditFragmentBinding binding = DataBindingUtil.findBinding(view);
 
         // Code hexadecimal
         TextInputLayout editCodeHexadecimal = binding.codeHexadecimal;
