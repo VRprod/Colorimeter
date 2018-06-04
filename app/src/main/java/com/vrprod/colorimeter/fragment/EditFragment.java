@@ -13,18 +13,36 @@ import android.view.ViewGroup;
 import com.vrprod.colorimeter.R;
 import com.vrprod.colorimeter.activity.MainActivity;
 import com.vrprod.colorimeter.databinding.EditFragmentBinding;
+import com.vrprod.colorimeter.model.Color;
 import com.vrprod.colorimeter.validator.EditTextValidator;
 
 public class EditFragment extends Fragment {
+    private static EditFragment instance;
+    private Color backgroundColor;
+    private Color textColor;
+
+    public static EditFragment getInstance() {
+        if (instance == null) {
+            instance = new EditFragment();
+        }
+        return instance;
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        if (backgroundColor == null) {
+            backgroundColor = new Color("Black", "#000000");
+        }
+        if (textColor == null) {
+            textColor = new Color("White", "#FFFFFF");
+        }
+
         // Init DataBinding
-        final EditFragmentBinding binding = DataBindingUtil.inflate(
-                inflater, R.layout.edit_fragment, container, false);
-        binding.setColor(((MainActivity) getActivity()).getBackgroundColor());
+        final EditFragmentBinding binding = DataBindingUtil.inflate(inflater, R.layout.edit_fragment, container, false);
+        binding.setBackgroundColor(backgroundColor);
+        binding.setTextColor(textColor);
 
         // Code hexadecimal
         binding.codeHexadecimal.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
@@ -32,7 +50,7 @@ public class EditFragment extends Fragment {
             public void validate(View view) {
                 boolean isValid = EditFragment.this.validate(view);
                 if (isValid) {
-                    ((MainActivity) getActivity()).getBackgroundColor().setCodeHexadecimal(binding.codeHexadecimal.getEditText().getText().toString());
+                    backgroundColor.setCodeHexadecimal(binding.codeHexadecimal.getEditText().getText().toString());
                 }
             }
         });
@@ -43,7 +61,7 @@ public class EditFragment extends Fragment {
             public void validate(View view) {
                 boolean isValid = EditFragment.this.validate(view);
                 if (isValid) {
-                    ((MainActivity) getActivity()).getBackgroundColor().setCodeRgbRed(Integer.valueOf(binding.codeRgbRed.getEditText().getText().toString()));
+                    backgroundColor.setCodeRgbRed(Integer.valueOf(binding.codeRgbRed.getEditText().getText().toString()));
                 }
             }
         });
@@ -54,7 +72,7 @@ public class EditFragment extends Fragment {
             public void validate(View view) {
                 boolean isValid = EditFragment.this.validate(view);
                 if (isValid) {
-                    ((MainActivity) getActivity()).getBackgroundColor().setCodeRgbGreen(Integer.valueOf(binding.codeRgbGreen.getEditText().getText().toString()));
+                    backgroundColor.setCodeRgbGreen(Integer.valueOf(binding.codeRgbGreen.getEditText().getText().toString()));
                 }
             }
         });
@@ -65,7 +83,7 @@ public class EditFragment extends Fragment {
             public void validate(View view) {
                 boolean isValid = EditFragment.this.validate(view);
                 if (isValid) {
-                    ((MainActivity) getActivity()).getBackgroundColor().setCodeRgbBlue(Integer.valueOf(binding.codeRgbBlue.getEditText().getText().toString()));
+                    backgroundColor.setCodeRgbBlue(Integer.valueOf(binding.codeRgbBlue.getEditText().getText().toString()));
                 }
             }
         });
@@ -132,5 +150,21 @@ public class EditFragment extends Fragment {
         }
 
         return isValid;
+    }
+
+    public Color getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(Color backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
+    public Color getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(Color textColor) {
+        this.textColor = textColor;
     }
 }

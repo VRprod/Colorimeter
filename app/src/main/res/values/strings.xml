@@ -6,7 +6,9 @@
     <string name="background">BACKGROUND</string>
     <string name="text">TEXT</string>
     <string name="with_text">With Text</string>
-    <string name="predefined_colors">Predefined Colors</string>
+    <string name="edit">Edit</string>
+    <string name="picker">Picker</string>
+    <string name="favorite">Favorite</string>
 
     <string name="codeHexadecimal">Code Hexadecimal</string>
     <string name="codeHexadecimal_regex">^#([a-fA-F_0-9]){6}$</string>

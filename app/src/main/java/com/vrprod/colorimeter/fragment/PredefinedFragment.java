@@ -30,7 +30,7 @@ public class PredefinedFragment extends Fragment {
 
         // Init RecyclerView
         RecyclerView recyclerView = binding.listColors;
-        recyclerView.setAdapter(new RecyclerViewAdapter(ColorUtils.getColors(), ((MainActivity) getActivity()).getBackgroundColor()));
+        recyclerView.setAdapter(new RecyclerViewAdapter(ColorUtils.getColors(), null));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), ((LinearLayoutManager) recyclerView.getLayoutManager()).getOrientation()));
