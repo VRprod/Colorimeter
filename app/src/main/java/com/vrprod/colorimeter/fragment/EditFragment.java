@@ -16,8 +16,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.vrprod.colorimeter.R;
-import com.vrprod.colorimeter.activity.MainActivity;
-import com.vrprod.colorimeter.databinding.EditFragmentBinding;
+import com.vrprod.colorimeter.databinding.FragmentEditBinding;
 import com.vrprod.colorimeter.model.Color;
 import com.vrprod.colorimeter.validator.EditTextValidator;
 
@@ -46,7 +45,7 @@ public class EditFragment extends Fragment {
         }
 
         // Init DataBinding
-        final EditFragmentBinding binding = DataBindingUtil.inflate(inflater, R.layout.edit_fragment, container, false);
+        final FragmentEditBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_edit, container, false);
         binding.setBackgroundColor(backgroundColor);
         binding.setTextColor(textColor);
 
@@ -59,11 +58,7 @@ public class EditFragment extends Fragment {
         drawerLayout = binding.drawerLayout;
         binding.buttonPredefinedColors.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
-                    drawerLayout.closeDrawer(GravityCompat.END);
-                } else {
-                    drawerLayout.openDrawer(GravityCompat.END);
-                }
+                toggleDrawerLayout();
             }
         });
 
@@ -121,9 +116,17 @@ public class EditFragment extends Fragment {
         return binding.getRoot();
     }
 
+    public void toggleDrawerLayout() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
+            drawerLayout.closeDrawer(GravityCompat.END);
+        } else {
+            drawerLayout.openDrawer(GravityCompat.END);
+        }
+    }
+
     private boolean validate(View view) {
         boolean isValid = true;
-        EditFragmentBinding binding = DataBindingUtil.findBinding(view);
+        FragmentEditBinding binding = DataBindingUtil.findBinding(view);
 
         // Code hexadecimal
         TextInputLayout editCodeHexadecimal = binding.codeHexadecimal;

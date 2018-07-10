@@ -17,4 +17,8 @@
     <string name="codeRgbBlue">Blue</string>
     <string name="codeRgb_regex">^[0-9]?[0-9]?[0-9]$</string>
     <string name="codeRgb_error">0 - 255</string>
+
+    <string name="title_activity_favorite">FavoriteActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

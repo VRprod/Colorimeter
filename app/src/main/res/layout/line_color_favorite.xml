@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.graphics.Color"/>
+        <variable name="colorLine" type="com.vrprod.colorimeter.model.Color"/>
+        <variable name="listener" type="com.vrprod.colorimeter.listener.FavoriteColorLineListener"/>
+    </data>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_margin="5dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() -> listener.onClick(colorLine)}">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingEnd="5dp">
+
+            <TextView
+                android:id="@+id/color_line_color"
+                android:layout_width="?android:attr/listPreferredItemHeight"
+                android:layout_height="?android:attr/listPreferredItemHeight"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@{Color.parseColor(colorLine.codeHexadecimal)}"/>
+
+            <TextView
+                android:id="@+id/color_line_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toEndOf="@id/color_line_color"
+                android:layout_toStartOf="@+id/color_line_codeRgb"
+                android:layout_centerVertical="true"
+                android:text="@{colorLine.name}"/>
+
+            <TextView
+                android:id="@id/color_line_codeRgb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toStartOf="@+id/color_line_codeHexadecimal"
+                android:layout_centerVertical="true"
+                app:text="@{colorLine.codeHexadecimal}"/>
+
+            <TextView
+                android:id="@id/color_line_codeHexadecimal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="@{colorLine.codeHexadecimal}"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</layout>

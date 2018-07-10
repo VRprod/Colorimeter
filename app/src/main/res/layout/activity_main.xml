@@ -8,7 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:fitsSystemWindows="true"
         tools:context=".activity.MainActivity">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@android:color/black"
+            android:elevation="4dp"
+            app:titleTextColor="@android:color/white" />
 
         <FrameLayout
             android:id="@+id/content"
@@ -21,7 +30,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/colorPrimary"
-            app:menu="@menu/bottom_navigation_menu"/>
+            android:background="@android:color/black"
+            android:elevation="8dp"
+            app:itemIconTint="@drawable/bottom_navigation_icon_color"
+            app:itemTextColor="@drawable/bottom_navigation_icon_color"
+            app:menu="@menu/menu_bottom_navigation"/>
     </LinearLayout>
 </layout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.graphics.Color"/>
+        <variable name="color" type="com.vrprod.colorimeter.model.Color"/>
+        <variable name="colorLine" type="com.vrprod.colorimeter.model.Color"/>
+        <variable name="listener" type="com.vrprod.colorimeter.listener.PredefinedColorLineListener"/>
+    </data>
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="?android:attr/listPreferredItemHeightSmall"
+        android:layout_margin="3dp"
+        android:background="?android:attr/colorBackground"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() -> listener.onClick(color, colorLine)}">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/listPreferredItemHeightSmall"
+            android:paddingEnd="5dp"
+            android:background="@{colorLine.codeHexadecimal.equals(color.codeHexadecimal) ? @color/grey : @android:color/transparent}">
+
+            <TextView
+                android:id="@+id/color_line_color"
+                android:layout_width="?android:attr/listPreferredItemHeightSmall"
+                android:layout_height="?android:attr/listPreferredItemHeightSmall"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@{Color.parseColor(colorLine.codeHexadecimal)}"/>
+
+            <TextView
+                android:id="@+id/color_line_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toEndOf="@id/color_line_color"
+                android:layout_toStartOf="@+id/color_line_codeRgb"
+                android:layout_centerVertical="true"
+                android:textSize="12sp"
+                android:typeface='@{colorLine.codeHexadecimal.equals(color.codeHexadecimal) ? "bold" : "normal"}'
+                android:text="@{colorLine.name}"/>
+
+            <TextView
+                android:id="@id/color_line_codeRgb"
+                android:layout_width="63dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toStartOf="@+id/color_line_codeHexadecimal"
+                android:layout_centerVertical="true"
+                android:textSize="10sp"
+                android:typeface='@{colorLine.codeHexadecimal.equals(color.codeHexadecimal) ? "bold" : "normal"}'
+                app:text="@{colorLine.codeHexadecimal}"/>
+
+            <TextView
+                android:id="@id/color_line_codeHexadecimal"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:textSize="12sp"
+                android:typeface='@{colorLine.codeHexadecimal.equals(color.codeHexadecimal) ? "bold" : "normal"}'
+                android:text="@{colorLine.codeHexadecimal}"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</layout>

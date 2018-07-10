@@ -9,16 +9,16 @@ import android.view.ViewGroup;
 
 import com.vrprod.colorimeter.BR;
 import com.vrprod.colorimeter.R;
-import com.vrprod.colorimeter.listener.ColorLineListener;
+import com.vrprod.colorimeter.listener.PredefinedColorLineListener;
 import com.vrprod.colorimeter.model.Color;
 
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class PredefinedRecyclerViewAdapter extends RecyclerView.Adapter<PredefinedRecyclerViewAdapter.ViewHolder> {
     private List<Color> data;
     private Color color;
 
-    public RecyclerViewAdapter(List<Color> data, Color color) {
+    public PredefinedRecyclerViewAdapter(List<Color> data, Color color) {
         this.data = data;
         this.color = color;
     }
@@ -27,7 +27,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ViewDataBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.color_line, parent, false);
+        ViewDataBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.line_color_predefined, parent, false);
         return new ViewHolder(binding);
     }
 
@@ -41,8 +41,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return (data == null) ? 0 : data.size();
     }
 
-    private ColorLineListener getColorLineListener() {
-        return new ColorLineListener() {
+    private PredefinedColorLineListener getPredefinedColorLineListener() {
+        return new PredefinedColorLineListener() {
             @Override
             public void onClick(Color color, Color colorLine) {
                 if (color.isActive()) {
@@ -63,7 +63,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private void bind(Object colorLine) {
             binding.setVariable(BR.colorLine, colorLine);
             binding.setVariable(BR.color, color);
-            binding.setVariable(BR.listener, getColorLineListener());
+            binding.setVariable(BR.listener, getPredefinedColorLineListener());
             binding.executePendingBindings();
         }
     }

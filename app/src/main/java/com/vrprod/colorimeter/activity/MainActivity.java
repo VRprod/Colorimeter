@@ -7,6 +7,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -15,9 +17,10 @@ import com.vrprod.colorimeter.databinding.ActivityMainBinding;
 import com.vrprod.colorimeter.fragment.EditFragment;
 import com.vrprod.colorimeter.fragment.FavoriteFragment;
 import com.vrprod.colorimeter.fragment.PickerFragment;
-import com.vrprod.colorimeter.model.Color;
 
 public class MainActivity extends AppCompatActivity {
+
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,19 +29,23 @@ public class MainActivity extends AppCompatActivity {
         // Init DataBinding
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+        // Init Toolbar
+        toolbar = binding.toolbar;
+        setSupportActionBar(toolbar);
+
         // Init BottomNavigationView
         binding.bottomNavigation.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()){
-                            case R.id.edit_item:
+                            case R.id.item_edit:
                                 showFragment(EditFragment.getInstance());
                                 return true;
-                            case R.id.picker_item:
+                            case R.id.item_picker:
                                 showFragment(PickerFragment.getInstance());
                                 return true;
-                            case R.id.favorite_item:
+                            case R.id.item_favorite:
                                 showFragment(FavoriteFragment.getInstance());
                                 return true;
                         }
