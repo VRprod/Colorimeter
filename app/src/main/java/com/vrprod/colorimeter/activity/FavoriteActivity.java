@@ -1,14 +1,18 @@
 package com.vrprod.colorimeter.activity;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.vrprod.colorimeter.R;
+import com.vrprod.colorimeter.databinding.ActivityFavoriteBinding;
+import com.vrprod.colorimeter.model.Color;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -89,7 +93,14 @@ public class FavoriteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_favorite);
+        // Init DataBinding
+        ActivityFavoriteBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_favorite);
+
+        // Get the Intent that started this activity and extract the string
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        String codeHexadecimal = intent.getStringExtra("codeHexadecimal");
+        binding.setColor(new Color(name, codeHexadecimal));
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
