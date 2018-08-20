@@ -33,11 +33,11 @@ public class PredefinedFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         // Init Button toggleDrawerLayout
-        binding.buttonToggleDrawerLayout.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                ((EditFragment) getParentFragment()).toggleDrawerLayout();
-            }
-        });
+        // binding.buttonToggleDrawerLayout.setOnClickListener(new View.OnClickListener() {
+        //     public void onClick(View v) {
+        //         ((EditFragment) getParentFragment()).toggleDrawerLayout();
+        //     }
+        // });
 
         return binding.getRoot();
     }

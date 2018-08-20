@@ -20,18 +20,12 @@ import com.vrprod.colorimeter.fragment.PickerFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Init DataBinding
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
-        // Init Toolbar
-        toolbar = binding.toolbar;
-        setSupportActionBar(toolbar);
 
         // Init BottomNavigationView
         binding.bottomNavigation.setOnNavigationItemSelectedListener(

@@ -7,11 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.vrprod.colorimeter.R;
+import com.vrprod.colorimeter.activity.MainActivity;
 import com.vrprod.colorimeter.adapter.FavoriteRecyclerViewAdapter;
 import com.vrprod.colorimeter.databinding.FragmentFavoriteBinding;
 import com.vrprod.colorimeter.service.IColorService;
@@ -36,6 +38,10 @@ public class FavoriteFragment extends Fragment {
         // Init DataBinding
         FragmentFavoriteBinding binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_favorite, container, false);
+
+        // Toolbar
+        Toolbar toolbar = binding.toolbar;
+        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
 
         // Init RecyclerView
         RecyclerView recyclerView = binding.listColors;

@@ -9,6 +9,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +17,13 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.vrprod.colorimeter.R;
+import com.vrprod.colorimeter.activity.MainActivity;
 import com.vrprod.colorimeter.databinding.FragmentEditBinding;
 import com.vrprod.colorimeter.model.Color;
 import com.vrprod.colorimeter.validator.EditTextValidator;
 
 public class EditFragment extends Fragment {
     private static EditFragment instance;
-    private DrawerLayout drawerLayout;
     private Color backgroundColor;
     private Color textColor;
 
@@ -49,18 +50,9 @@ public class EditFragment extends Fragment {
         binding.setBackgroundColor(backgroundColor);
         binding.setTextColor(textColor);
 
-        // Init BottomSheetBehavior
-        BottomSheetBehavior bottomSheet = BottomSheetBehavior.from(binding.bottomSheet);
-        bottomSheet.setState(BottomSheetBehavior.STATE_EXPANDED);
-
-
-        // Init DrawerLayout
-        drawerLayout = binding.drawerLayout;
-        binding.buttonPredefinedColors.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                toggleDrawerLayout();
-            }
-        });
+        // Toolbar
+        Toolbar toolbar = binding.toolbar;
+        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
 
         binding.buttonSaveColor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -114,14 +106,6 @@ public class EditFragment extends Fragment {
         });
 
         return binding.getRoot();
-    }
-
-    public void toggleDrawerLayout() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
-            drawerLayout.closeDrawer(GravityCompat.END);
-        } else {
-            drawerLayout.openDrawer(GravityCompat.END);
-        }
     }
 
     private boolean validate(View view) {
