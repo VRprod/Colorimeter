@@ -30,7 +30,7 @@ public class ColorUtils {
     public static List<Color> getColors() {
         List<Color> lstColors = new ArrayList<>();
         for (int i = 0; i < data.length; i++) {
-            lstColors.add(new Color(data[i][0], data[i][1]));
+            lstColors.add(new Color(null, data[i][0], data[i][1]));
         }
         return lstColors;
     }

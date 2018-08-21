@@ -4,20 +4,13 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.vrprod.colorimeter.R;
-import com.vrprod.colorimeter.activity.MainActivity;
 import com.vrprod.colorimeter.databinding.FragmentEditBinding;
 import com.vrprod.colorimeter.model.Color;
 import com.vrprod.colorimeter.validator.EditTextValidator;
@@ -39,23 +32,16 @@ public class EditFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         if (backgroundColor == null) {
-            backgroundColor = new Color("Black", "#000000");
+            backgroundColor = new Color(null,"Black", "#000000");
         }
         if (textColor == null) {
-            textColor = new Color("White", "#FFFFFF");
+            textColor = new Color(null, "White", "#FFFFFF");
         }
 
         // Init DataBinding
         final FragmentEditBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_edit, container, false);
         binding.setBackgroundColor(backgroundColor);
         binding.setTextColor(textColor);
-
-        binding.buttonSaveColor.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                ((ImageButton) v).setImageResource(R.drawable.ic_saved);
-                Toast.makeText(getActivity(), "Color saved", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         // Code hexadecimal
         if (binding.codeHexadecimal.getEditText() != null) {

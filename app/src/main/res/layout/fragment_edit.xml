@@ -7,15 +7,15 @@
         <variable name="backgroundColor" type="com.vrprod.colorimeter.model.Color"/>
         <variable name="textColor" type="com.vrprod.colorimeter.model.Color"/>
     </data>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <RelativeLayout
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
-            android:gravity="top"
+            android:layout_alignParentTop="true"
             android:background="@android:color/background_light"
             android:elevation="4dp">
 
@@ -25,14 +25,14 @@
                 android:layout_centerInParent="true"
                 android:textSize="20sp"
                 android:textColor="@android:color/black"
-                android:text="@string/app_name"/>
+                android:text="@string/edit"/>
         </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="50dp"
-            android:paddingBottom="50dp"
+            android:layout_below="@id/toolbar"
+            android:layout_above="@+id/edit_view"
             android:gravity="center"
             android:background="@{Color.parseColor(backgroundColor.codeHexadecimal)}"
             android:textSize="30sp"
@@ -41,193 +41,150 @@
             android:textColor="@{Color.parseColor(textColor.codeHexadecimal)}"/>
 
         <LinearLayout
+            android:id="@id/edit_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_alignParentBottom="true"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/code_hexadecimal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:errorEnabled="false"
+                app:hintEnabled="false">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="7"
+                    android:text="@{backgroundColor.codeHexadecimal}"
+                    android:textAlignment="center"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+            </android.support.design.widget.TextInputLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                android:elevation="4dp"
-                android:background="?android:attr/colorBackground">
+                android:layout_height="wrap_content">
 
-                <ImageButton
-                    android:id="@+id/button_save_color"
+                <SeekBar
+                    android:id="@+id/sliderRed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toStartOf="@+id/button_predefined_colors"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="10dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_not_saved"
-                    android:contentDescription="@string/contentDescription_button_save"/>
-
-                <ImageButton
-                    android:id="@id/button_predefined_colors"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="10dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_list"
-                    android:contentDescription="@string/contentDescription_button_predefined"/>
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="30dp"
-                android:paddingBottom="30dp"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:descendantFocusability="beforeDescendants"
-                android:focusableInTouchMode="true">
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:layout_toStartOf="@+id/codeRgbRed"
+                    android:enabled="@{backgroundColor.active}"
+                    android:max="255"
+                    android:maxHeight="2dp"
+                    android:minHeight="2dp"
+                    android:progress="@={backgroundColor.codeRgbRed}"
+                    android:progressDrawable="@drawable/seekbar_red"
+                    android:thumbTint="@color/red" />
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/code_hexadecimal"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/codeRgbRed"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textStyle="bold"
                     app:errorEnabled="false"
                     app:hintEnabled="false">
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:maxLength="7"
-                        android:textSize="26sp"
-                        android:textStyle="bold"
-                        android:text="@{backgroundColor.codeHexadecimal}"
-                        android:textAlignment="center" />
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:text="@{String.valueOf(backgroundColor.codeRgbRed)}"
+                        android:textAlignment="center"
+                        android:textColor="@color/red" />
                 </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                    <SeekBar
-                        android:id="@+id/sliderRed"
-                        android:layout_width="wrap_content"
+                <SeekBar
+                    android:id="@+id/sliderGreen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:layout_toStartOf="@+id/codeRgbGreen"
+                    android:enabled="@{backgroundColor.active}"
+                    android:max="255"
+                    android:maxHeight="2dp"
+                    android:minHeight="2dp"
+                    android:progress="@={backgroundColor.codeRgbGreen}"
+                    android:progressDrawable="@drawable/seekbar_green"
+                    android:thumbTint="@color/green" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/codeRgbGreen"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textStyle="bold"
+                    app:errorEnabled="false"
+                    app:hintEnabled="false">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_toStartOf="@+id/codeRgbRed"
-                        android:layout_centerInParent="true"
-                        android:enabled="@{backgroundColor.active}"
-                        android:max="255"
-                        android:maxHeight="2dp"
-                        android:minHeight="2dp"
-                        android:progress="@={backgroundColor.codeRgbRed}"
-                        android:progressDrawable="@drawable/seekbar_red"
-                        android:thumbTint="@color/red" />
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:text="@{String.valueOf(backgroundColor.codeRgbGreen)}"
+                        android:textAlignment="center"
+                        android:textColor="@color/green" />
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
 
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/codeRgbRed"
-                        android:layout_width="50dp"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <SeekBar
+                    android:id="@+id/sliderBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:layout_toStartOf="@+id/codeRgbBlue"
+                    android:enabled="@{backgroundColor.active}"
+                    android:max="255"
+                    android:maxHeight="2dp"
+                    android:minHeight="2dp"
+                    android:progress="@={backgroundColor.codeRgbBlue}"
+                    android:progressDrawable="@drawable/seekbar_blue"
+                    android:thumbTint="@color/blue" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/codeRgbBlue"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textStyle="bold"
+                    app:errorEnabled="false"
+                    app:hintEnabled="false">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:textStyle="bold"
-                        app:errorEnabled="false"
-                        app:hintEnabled="false">
-
-                        <android.support.design.widget.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"
-                            android:maxLength="3"
-                            android:text="@{String.valueOf(backgroundColor.codeRgbRed)}"
-                            android:textAlignment="center"
-                            android:textColor="@color/red" />
-                    </android.support.design.widget.TextInputLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <SeekBar
-                        android:id="@+id/sliderGreen"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_toStartOf="@+id/codeRgbGreen"
-                        android:layout_centerInParent="true"
-                        android:enabled="@{backgroundColor.active}"
-                        android:max="255"
-                        android:maxHeight="2dp"
-                        android:minHeight="2dp"
-                        android:progress="@={backgroundColor.codeRgbGreen}"
-                        android:progressDrawable="@drawable/seekbar_green"
-                        android:thumbTint="@color/green" />
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/codeRgbGreen"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:textStyle="bold"
-                        app:errorEnabled="false"
-                        app:hintEnabled="false">
-
-                        <android.support.design.widget.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"
-                            android:maxLength="3"
-                            android:text="@{String.valueOf(backgroundColor.codeRgbGreen)}"
-                            android:textAlignment="center"
-                            android:textColor="@color/green" />
-                    </android.support.design.widget.TextInputLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <SeekBar
-                        android:id="@+id/sliderBlue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_toStartOf="@+id/codeRgbBlue"
-                        android:layout_centerInParent="true"
-                        android:enabled="@{backgroundColor.active}"
-                        android:max="255"
-                        android:maxHeight="2dp"
-                        android:minHeight="2dp"
-                        android:progress="@={backgroundColor.codeRgbBlue}"
-                        android:progressDrawable="@drawable/seekbar_blue"
-                        android:thumbTint="@color/blue" />
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/codeRgbBlue"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:textStyle="bold"
-                        app:errorEnabled="false"
-                        app:hintEnabled="false">
-
-                        <android.support.design.widget.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"
-                            android:maxLength="3"
-                            android:text="@{String.valueOf(backgroundColor.codeRgbBlue)}"
-                            android:textAlignment="center"
-                            android:textColor="@color/blue" />
-                    </android.support.design.widget.TextInputLayout>
-                </RelativeLayout>
-            </LinearLayout>
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:text="@{String.valueOf(backgroundColor.codeRgbBlue)}"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue" />
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
         </LinearLayout>
-<!--
-        <fragment
-            android:id="@+id/predefined_fragment"
-            android:name="com.vrprod.colorimeter.fragment.PredefinedFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="end"
-            android:background="?android:attr/colorPrimary"
-            android:fitsSystemWindows="true"/>
--->
-    </LinearLayout>
+    </RelativeLayout>
 </layout>

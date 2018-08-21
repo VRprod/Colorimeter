@@ -100,7 +100,7 @@ public class FavoriteActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         String codeHexadecimal = intent.getStringExtra("codeHexadecimal");
-        binding.setColor(new Color(name, codeHexadecimal));
+        binding.setColor(new Color(null, name, codeHexadecimal));
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);

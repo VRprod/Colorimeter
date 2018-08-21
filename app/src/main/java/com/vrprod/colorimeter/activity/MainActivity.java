@@ -7,10 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.vrprod.colorimeter.R;
 import com.vrprod.colorimeter.databinding.ActivityMainBinding;
@@ -43,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                                 showFragment(PickerFragment.getInstance());
                                 return true;
                             case R.id.item_favorite:
-                                showFragment(FavoriteFragment.getInstance());
+                                showFragment(FavoriteFragment.getInstance(getApplicationContext()));
                                 return true;
                         }
                         return false;

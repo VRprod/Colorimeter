@@ -1,10 +1,10 @@
-package com.vrprod.colorimeter.service;
+package com.vrprod.colorimeter.dao;
 
 import com.vrprod.colorimeter.model.Color;
 
 import java.util.List;
 
-public interface IColorService {
+public interface IColorDao {
 
     Color create(Color color);
     boolean delete(Long id);

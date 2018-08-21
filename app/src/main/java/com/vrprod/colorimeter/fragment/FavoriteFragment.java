@@ -1,5 +1,6 @@
 package com.vrprod.colorimeter.fragment;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,17 +16,20 @@ import com.vrprod.colorimeter.R;
 import com.vrprod.colorimeter.activity.MainActivity;
 import com.vrprod.colorimeter.adapter.FavoriteRecyclerViewAdapter;
 import com.vrprod.colorimeter.databinding.FragmentFavoriteBinding;
+import com.vrprod.colorimeter.model.Color;
 import com.vrprod.colorimeter.service.IColorService;
 import com.vrprod.colorimeter.service.impl.ColorService;
+
+import java.util.List;
 
 public class FavoriteFragment extends Fragment {
     private static FavoriteFragment instance;
     private IColorService colorService;
 
-    public static FavoriteFragment getInstance() {
+    public static FavoriteFragment getInstance(Context context) {
         if (instance == null) {
             instance = new FavoriteFragment();
-            instance.setColorService(new ColorService());
+            instance.setColorService(new ColorService(context));
         }
         return instance;
     }
@@ -51,10 +54,18 @@ public class FavoriteFragment extends Fragment {
         });
 
         // Init RecyclerView
-        RecyclerView recyclerView = binding.listColors;
-        recyclerView.setAdapter(new FavoriteRecyclerViewAdapter(colorService.getAll()));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        List<Color> lstColors = colorService.readAll();
+        if (lstColors == null || lstColors.isEmpty()) {
+            binding.lstColors.setVisibility(View.GONE);
+            binding.emptyView.setVisibility(View.VISIBLE);
+        } else {
+            binding.lstColors.setVisibility(View.VISIBLE);
+            binding.emptyView.setVisibility(View.GONE);
+            RecyclerView recyclerView = binding.lstColors;
+            recyclerView.setAdapter(new FavoriteRecyclerViewAdapter(colorService.readAll()));
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        }
 
         return binding.getRoot();
     }

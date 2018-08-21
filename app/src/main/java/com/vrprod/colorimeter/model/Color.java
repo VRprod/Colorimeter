@@ -7,6 +7,7 @@ import com.android.databinding.library.baseAdapters.BR;
 import com.vrprod.colorimeter.util.ColorUtils;
 
 public class Color extends BaseObservable {
+    private Long id;
     private String name;
     private String codeHexadecimal;
     private int codeRgbRed;
@@ -14,7 +15,8 @@ public class Color extends BaseObservable {
     private int codeRgbBlue;
     private boolean isActive;
 
-    public Color(String name, String codeHexadecimal) {
+    public Color(Long id, String name, String codeHexadecimal) {
+        this.id = id;
         this.name = name;
         this.codeHexadecimal = codeHexadecimal;
         this.codeRgbRed = ColorUtils.generateCodeRgbRed(this.codeHexadecimal);
@@ -23,13 +25,12 @@ public class Color extends BaseObservable {
         this.isActive = true;
     }
 
-    public Color(String name, String codeHexadecimal, int codeRgbRed, int codeRgbGreen, int codeRgbBlue, boolean isActive) {
-        this.name = name;
-        this.codeHexadecimal = codeHexadecimal;
-        this.codeRgbRed = codeRgbRed;
-        this.codeRgbGreen = codeRgbGreen;
-        this.codeRgbBlue = codeRgbBlue;
-        this.isActive = isActive;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

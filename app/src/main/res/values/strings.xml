@@ -10,13 +10,13 @@
     <string name="favorite">Favorite</string>
 
     <string name="codeHexadecimal">Code Hexadecimal</string>
-    <string name="codeHexadecimal_regex">^#([a&#8211;fA&#8211;F_0&#8211;9]){6}$</string>
+    <string name="codeHexadecimal_regex">^#([a-fA-F_0-9]){6}$</string>
     <string name="codeHexadecimal_error">Format : #000000</string>
     <string name="codeRgbRed">Red</string>
     <string name="codeRgbGreen">Green</string>
     <string name="codeRgbBlue">Blue</string>
-    <string name="codeRgb_regex">^[0&#8211;9]?[0&#8211;9]?[0&#8211;9]$</string>
-    <string name="codeRgb_error">0 &#8211; 255</string>
+    <string name="codeRgb_regex">^[0-9]?[0-9]?[0-9]$</string>
+    <string name="codeRgb_error">[0&#8211;255]</string>
 
     <string name="title_activity_favorite">FavoriteActivity</string>
     <string name="dummy_button">Dummy Button</string>
