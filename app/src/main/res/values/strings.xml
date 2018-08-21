@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Colorimeter</string>
 
-    <string name="visualization_text_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla nunc nec malesuada porttitor. Cras placerat nulla eu commodo facilisis. Nam volutpat faucibus justo sed mattis. Proin commodo, turpis in luctus cursus, lacus magna dictum ex, vitae tincidunt dui eros quis risus. Pellentesque vel massa quis est volutpat iaculis. Morbi sit amet ex vel augue cursus tempor. Aliquam ultricies dictum egestas. Aliquam non consectetur lorem. Suspendisse interdum tempus mi eget ornare. Pellentesque hendrerit sollicitudin tellus. Donec sit amet diam vel orci pharetra finibus. Suspendisse molestie ultricies mi, non egestas ipsum placerat sit amet. Morbi posuere ex in libero vehicula, in auctor tortor condimentum. Morbi tempus pellentesque ex ac vulputate.</string>
+    <string name="visualization_text">Hello World !</string>
     <string name="background">BACKGROUND</string>
     <string name="text">TEXT</string>
     <string name="with_text">With Text</string>
@@ -10,15 +10,20 @@
     <string name="favorite">Favorite</string>
 
     <string name="codeHexadecimal">Code Hexadecimal</string>
-    <string name="codeHexadecimal_regex">^#([a-fA-F_0-9]){6}$</string>
+    <string name="codeHexadecimal_regex">^#([a&#8211;fA&#8211;F_0&#8211;9]){6}$</string>
     <string name="codeHexadecimal_error">Format : #000000</string>
     <string name="codeRgbRed">Red</string>
     <string name="codeRgbGreen">Green</string>
     <string name="codeRgbBlue">Blue</string>
-    <string name="codeRgb_regex">^[0-9]?[0-9]?[0-9]$</string>
-    <string name="codeRgb_error">0 - 255</string>
+    <string name="codeRgb_regex">^[0&#8211;9]?[0&#8211;9]?[0&#8211;9]$</string>
+    <string name="codeRgb_error">0 &#8211; 255</string>
 
     <string name="title_activity_favorite">FavoriteActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <!-- ImageButton Content Description -->
+    <string name="contentDescription_button_back">Button Back</string>
+    <string name="contentDescription_button_save">Button Save</string>
+    <string name="contentDescription_button_predefined">Button Predefined</string>
 </resources>

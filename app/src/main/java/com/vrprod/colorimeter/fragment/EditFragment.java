@@ -50,10 +50,6 @@ public class EditFragment extends Fragment {
         binding.setBackgroundColor(backgroundColor);
         binding.setTextColor(textColor);
 
-        // Toolbar
-        Toolbar toolbar = binding.toolbar;
-        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
-
         binding.buttonSaveColor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 ((ImageButton) v).setImageResource(R.drawable.ic_saved);
@@ -62,59 +58,72 @@ public class EditFragment extends Fragment {
         });
 
         // Code hexadecimal
-        binding.codeHexadecimal.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
-            @Override
-            public void validate(View view) {
-                boolean isValid = EditFragment.this.validate(view);
-                if (isValid) {
-                    backgroundColor.setCodeHexadecimal(binding.codeHexadecimal.getEditText().getText().toString());
+        if (binding.codeHexadecimal.getEditText() != null) {
+            binding.codeHexadecimal.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
+                @Override
+                public void validate(View view) {
+                    boolean isValid = EditFragment.this.validate(view);
+                    if (isValid && binding.codeHexadecimal.getEditText().getText() != null) {
+                        backgroundColor.setCodeHexadecimal(binding.codeHexadecimal.getEditText().getText().toString());
+                    }
                 }
-            }
-        });
+            });
+        }
 
         // Code RGB Red
-        binding.codeRgbRed.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
-            @Override
-            public void validate(View view) {
-                boolean isValid = EditFragment.this.validate(view);
-                if (isValid) {
-                    backgroundColor.setCodeRgbRed(Integer.valueOf(binding.codeRgbRed.getEditText().getText().toString()));
+        if (binding.codeRgbRed.getEditText() != null) {
+            binding.codeRgbRed.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
+                @Override
+                public void validate(View view) {
+                    boolean isValid = EditFragment.this.validate(view);
+                    if (isValid && binding.codeRgbRed.getEditText().getText() != null) {
+                        backgroundColor.setCodeRgbRed(Integer.valueOf(binding.codeRgbRed.getEditText().getText().toString()));
+                    }
                 }
-            }
-        });
+            });
+        }
 
         // Code RGB Green
-        binding.codeRgbGreen.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
-            @Override
-            public void validate(View view) {
-                boolean isValid = EditFragment.this.validate(view);
-                if (isValid) {
-                    backgroundColor.setCodeRgbGreen(Integer.valueOf(binding.codeRgbGreen.getEditText().getText().toString()));
+        if (binding.codeRgbGreen.getEditText() != null) {
+            binding.codeRgbGreen.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
+                @Override
+                public void validate(View view) {
+                    boolean isValid = EditFragment.this.validate(view);
+                    if (isValid && binding.codeRgbGreen.getEditText().getText() != null) {
+                        backgroundColor.setCodeRgbGreen(Integer.valueOf(binding.codeRgbGreen.getEditText().getText().toString()));
+                    }
                 }
-            }
-        });
+            });
+        }
 
         // Code RGB Blue
-        binding.codeRgbBlue.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
-            @Override
-            public void validate(View view) {
-                boolean isValid = EditFragment.this.validate(view);
-                if (isValid) {
-                    backgroundColor.setCodeRgbBlue(Integer.valueOf(binding.codeRgbBlue.getEditText().getText().toString()));
+        if (binding.codeRgbBlue.getEditText() != null) {
+            binding.codeRgbBlue.getEditText().addTextChangedListener(new EditTextValidator(binding.getRoot()) {
+                @Override
+                public void validate(View view) {
+                    boolean isValid = EditFragment.this.validate(view);
+                    if (isValid && binding.codeRgbBlue.getEditText().getText() != null) {
+                        backgroundColor.setCodeRgbBlue(Integer.valueOf(binding.codeRgbBlue.getEditText().getText().toString()));
+                    }
                 }
-            }
-        });
+            });
+        }
 
         return binding.getRoot();
     }
 
     private boolean validate(View view) {
-        boolean isValid = true;
         FragmentEditBinding binding = DataBindingUtil.findBinding(view);
+        if (binding == null) {
+            return false;
+        }
+        boolean isValid = true;
 
         // Code hexadecimal
         TextInputLayout editCodeHexadecimal = binding.codeHexadecimal;
-        if (editCodeHexadecimal.getEditText().getText().toString().matches(getString(R.string.codeHexadecimal_regex))) {
+        if (editCodeHexadecimal.getEditText() != null
+                && editCodeHexadecimal.getEditText().getText() != null
+                && editCodeHexadecimal.getEditText().getText().toString().matches(getString(R.string.codeHexadecimal_regex))) {
             editCodeHexadecimal.setError(null);
         } else {
             editCodeHexadecimal.setError(getString(R.string.codeHexadecimal_error));
@@ -123,7 +132,9 @@ public class EditFragment extends Fragment {
 
         // Code RGB Red
         TextInputLayout editCodeRgbRed = binding.codeRgbRed;
-        if (editCodeRgbRed.getEditText().getText().toString().matches(getString(R.string.codeRgb_regex))) {
+        if (editCodeRgbRed.getEditText() != null
+                && editCodeRgbRed.getEditText().getText() != null
+                && editCodeRgbRed.getEditText().getText().toString().matches(getString(R.string.codeRgb_regex))) {
             int codeRgbRed = Integer.valueOf(editCodeRgbRed.getEditText().getText().toString());
             if (codeRgbRed >= 0 && codeRgbRed <= 255) {
                 editCodeRgbRed.setError(null);
@@ -138,7 +149,9 @@ public class EditFragment extends Fragment {
 
         // Code RGB Green
         TextInputLayout editCodeRgbGreen = binding.codeRgbGreen;
-        if (editCodeRgbGreen.getEditText().getText().toString().matches(getString(R.string.codeRgb_regex))) {
+        if (editCodeRgbGreen.getEditText() != null
+                && editCodeRgbGreen.getEditText().getText() != null
+                && editCodeRgbGreen.getEditText().getText().toString().matches(getString(R.string.codeRgb_regex))) {
             int codeRgbGreen = Integer.valueOf(editCodeRgbGreen.getEditText().getText().toString());
             if (codeRgbGreen >= 0 && codeRgbGreen <= 255) {
                 editCodeRgbGreen.setError(null);
@@ -153,7 +166,9 @@ public class EditFragment extends Fragment {
 
         // Code RGB Blue
         TextInputLayout editCodeRgbBlue = binding.codeRgbBlue;
-        if (editCodeRgbBlue.getEditText().getText().toString().matches(getString(R.string.codeRgb_regex))) {
+        if (editCodeRgbBlue.getEditText() != null
+                && editCodeRgbBlue.getEditText().getText() != null
+                && editCodeRgbBlue.getEditText().getText().toString().matches(getString(R.string.codeRgb_regex))) {
             int codeRgbBlue = Integer.valueOf(editCodeRgbBlue.getEditText().getText().toString());
             if (codeRgbBlue >= 0 && codeRgbBlue <= 255) {
                 editCodeRgbBlue.setError(null);

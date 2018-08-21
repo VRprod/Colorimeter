@@ -19,7 +19,7 @@ public abstract class BindingAdapterUtils {
         }
     }
 
-    @android.databinding.BindingAdapter("app:text")
+    @android.databinding.BindingAdapter("text")
     public static void setCodeRgb(TextView v, String codeHexadecimal) {
         v.setText(new StringBuilder()
                 .append("(")

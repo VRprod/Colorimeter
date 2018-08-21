@@ -39,9 +39,16 @@ public class FavoriteFragment extends Fragment {
         FragmentFavoriteBinding binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_favorite, container, false);
 
-        // Toolbar
-        Toolbar toolbar = binding.toolbar;
-        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
+        // Init button Back
+        binding.buttonBack.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                MainActivity activity = (MainActivity) getActivity();
+                if (activity != null && activity.getBottomNavigationView() != null) {
+                    activity.getBottomNavigationView().setSelectedItemId(R.id.item_edit);
+                    activity.showFragment(EditFragment.getInstance());
+                }
+            }
+        });
 
         // Init RecyclerView
         RecyclerView recyclerView = binding.listColors;

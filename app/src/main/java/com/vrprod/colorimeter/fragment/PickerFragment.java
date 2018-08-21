@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.vrprod.colorimeter.R;
 import com.vrprod.colorimeter.activity.MainActivity;
@@ -36,9 +38,16 @@ public class PickerFragment extends Fragment {
         FragmentPickerBinding binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_picker, container, false);
 
-        // Toolbar
-        Toolbar toolbar = binding.toolbar;
-        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
+        // Init button Back
+        binding.buttonBack.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                MainActivity activity = (MainActivity) getActivity();
+                if (activity != null && activity.getBottomNavigationView() != null) {
+                    activity.getBottomNavigationView().setSelectedItemId(R.id.item_edit);
+                    activity.showFragment(EditFragment.getInstance());
+                }
+            }
+        });
 
         return binding.getRoot();
     }
