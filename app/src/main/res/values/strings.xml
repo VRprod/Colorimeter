@@ -10,6 +10,9 @@
     <string name="picker">Picker</string>
     <string name="favorite">Favorite</string>
     <string name="no_favorite">No Favorite</string>
+    <string name="color_saved">Color saved</string>
+    <string name="color_deleted">Color deleted</string>
+    <string name="error">Error</string>
 
     <string name="codeHexadecimal">Code Hexadecimal</string>
     <string name="codeHexadecimal_regex">^#([a-fA-F_0-9]){6}$</string>

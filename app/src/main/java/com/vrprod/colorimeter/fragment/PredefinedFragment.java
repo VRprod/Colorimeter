@@ -16,11 +16,13 @@ import com.vrprod.colorimeter.activity.MainActivity;
 import com.vrprod.colorimeter.adapter.PredefinedRecyclerViewAdapter;
 import com.vrprod.colorimeter.databinding.FragmentPickerBinding;
 import com.vrprod.colorimeter.databinding.FragmentPredefinedBinding;
+import com.vrprod.colorimeter.model.Color;
 import com.vrprod.colorimeter.util.ColorUtils;
 
 public class PredefinedFragment extends Fragment {
 
     private static PredefinedFragment instance;
+    private MainActivity mainActivity;
 
     public static PredefinedFragment getInstance() {
         if (instance == null) {
@@ -32,6 +34,10 @@ public class PredefinedFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mainActivity = (MainActivity) instance.getActivity();
+        if (mainActivity != null && mainActivity.getColor() == null) {
+            mainActivity.setColor(new Color(null,null, "#33B5E5"));
+        }
 
         // Init DataBinding
         FragmentPredefinedBinding binding = DataBindingUtil.inflate(
@@ -39,7 +45,7 @@ public class PredefinedFragment extends Fragment {
 
         // Init RecyclerView
         RecyclerView recyclerView = binding.listColors;
-        recyclerView.setAdapter(new PredefinedRecyclerViewAdapter(ColorUtils.getColors(), null));
+        recyclerView.setAdapter(new PredefinedRecyclerViewAdapter(ColorUtils.getColors(), mainActivity.getColor()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -49,7 +55,7 @@ public class PredefinedFragment extends Fragment {
                 MainActivity activity = (MainActivity) getActivity();
                 if (activity != null && activity.getBottomNavigationView() != null) {
                     activity.getBottomNavigationView().setSelectedItemId(R.id.item_edit);
-                    activity.showFragment(EditFragment.getInstance());
+                    activity.showFragment(EditFragment.getInstance(activity.getApplicationContext()));
                 }
             }
         });

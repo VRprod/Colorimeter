@@ -44,7 +44,7 @@ public class PickerFragment extends Fragment {
                 MainActivity activity = (MainActivity) getActivity();
                 if (activity != null && activity.getBottomNavigationView() != null) {
                     activity.getBottomNavigationView().setSelectedItemId(R.id.item_edit);
-                    activity.showFragment(EditFragment.getInstance());
+                    activity.showFragment(EditFragment.getInstance(activity.getApplicationContext()));
                 }
             }
         });

@@ -50,7 +50,7 @@ public class FavoriteFragment extends Fragment {
                 MainActivity activity = (MainActivity) getActivity();
                 if (activity != null && activity.getBottomNavigationView() != null) {
                     activity.getBottomNavigationView().setSelectedItemId(R.id.item_edit);
-                    activity.showFragment(EditFragment.getInstance());
+                    activity.showFragment(EditFragment.getInstance(activity.getApplicationContext()));
                 }
             }
         });
@@ -74,7 +74,6 @@ public class FavoriteFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Color color = colorService.create(new Color(null, "Test", "#654321"));
-                lstColors.add(color);
             }
         });
 

@@ -36,12 +36,12 @@ public class ColorDao extends DatabaseHandler implements IColorDao {
     }
 
     @Override
-    public boolean delete(Long id) {
-        if (id == null) {
+    public boolean deleteByCodeHexadecimal(String codeHexadecimal) {
+        if (codeHexadecimal == null) {
             return false;
         }
-        String whereClause = "id = ?";
-        String[] whereArgs = { id.toString() };
+        String whereClause = new StringBuilder(COLUMN_CODE_HEXADECIMAL).append(" = ?").toString();
+        String[] whereArgs = { codeHexadecimal };
 
         SQLiteDatabase db = this.getWritableDatabase();
         boolean deleteSuccessful = db.delete(TABLE_COLOR, whereClause, whereArgs) > 0;
@@ -64,9 +64,9 @@ public class ColorDao extends DatabaseHandler implements IColorDao {
                 String codeHexadecimal = cursor.getString(cursor.getColumnIndex(COLUMN_CODE_HEXADECIMAL));
                 lstColors.add(new Color(id, name, codeHexadecimal));
             }
+            cursor.close();
         }
 
-        cursor.close();
         db.close();
         return lstColors;
     }
@@ -76,7 +76,7 @@ public class ColorDao extends DatabaseHandler implements IColorDao {
         if (id == null) {
             return null;
         }
-        String sql = new StringBuilder(" SELECT * FROM ").append(TABLE_COLOR).append(" WHERE id = ").append(id).toString();
+        String sql = new StringBuilder(" SELECT * FROM ").append(TABLE_COLOR).append(" WHERE ").append(COLUMN_ID).append(" = ").append(id).toString();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
 
@@ -85,9 +85,9 @@ public class ColorDao extends DatabaseHandler implements IColorDao {
             String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
             String codeHexadecimal = cursor.getString(cursor.getColumnIndex(COLUMN_CODE_HEXADECIMAL));
             color = new Color(id, name, codeHexadecimal);
+            cursor.close();
         }
 
-        cursor.close();
         db.close();
         return color;
     }
@@ -105,7 +105,7 @@ public class ColorDao extends DatabaseHandler implements IColorDao {
         String[] whereArgs = { color.getId().toString() };
 
         SQLiteDatabase db = this.getWritableDatabase();
-        boolean updateSuccessful = db.update("students", values, whereClause, whereArgs) > 0;
+        boolean updateSuccessful = db.update(TABLE_COLOR, values, whereClause, whereArgs) > 0;
 
         db.close();
         return updateSuccessful;

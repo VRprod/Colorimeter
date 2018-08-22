@@ -15,10 +15,12 @@ import com.vrprod.colorimeter.fragment.EditFragment;
 import com.vrprod.colorimeter.fragment.FavoriteFragment;
 import com.vrprod.colorimeter.fragment.PickerFragment;
 import com.vrprod.colorimeter.fragment.PredefinedFragment;
+import com.vrprod.colorimeter.model.Color;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
+    private Color color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.item_edit:
-                                showFragment(EditFragment.getInstance());
+                                showFragment(EditFragment.getInstance(getApplicationContext()));
                                 return true;
                             case R.id.item_predefined:
                                 showFragment(PredefinedFragment.getInstance());
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        showFragment(EditFragment.getInstance());
+        showFragment(EditFragment.getInstance(getApplicationContext()));
     }
 
     public void showFragment(Fragment fragment) {
@@ -67,5 +69,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void setBottomNavigationView(BottomNavigationView bottomNavigationView) {
         this.bottomNavigationView = bottomNavigationView;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

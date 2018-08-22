@@ -26,11 +26,8 @@ public class ColorService implements IColorService {
     }
 
     @Override
-    public boolean delete(Long id) {
-        if (id == null) {
-            return false;
-        }
-        return colorDao.delete(id);
+    public boolean deleteByCodeHexadecimal(String codeHexadecimal) {
+        return codeHexadecimal != null && colorDao.deleteByCodeHexadecimal(codeHexadecimal);
     }
 
     @Override
@@ -48,9 +45,6 @@ public class ColorService implements IColorService {
 
     @Override
     public boolean update(Color color) {
-        if (color == null || color.getId() == null) {
-            return false;
-        }
-        return colorDao.update(color);
+        return color != null && colorDao.update(color);
     }
 }

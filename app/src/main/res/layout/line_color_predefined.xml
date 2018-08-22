@@ -20,8 +20,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="?android:attr/listPreferredItemHeightSmall"
-            android:paddingEnd="5dp"
-            android:background="@{colorLine.codeHexadecimal.equals(color.codeHexadecimal) ? @color/grey : @android:color/transparent}">
+            android:background="@{colorLine.codeHexadecimal.equals(color.codeHexadecimal) ? @color/selected_line : @android:color/transparent}">
 
             <TextView
                 android:id="@+id/color_line_color"
@@ -35,7 +34,7 @@
                 android:id="@+id/color_line_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_toEndOf="@id/color_line_color"
                 android:layout_toStartOf="@+id/color_line_codeRgb"
                 android:layout_centerVertical="true"
@@ -47,7 +46,7 @@
                 android:id="@id/color_line_codeRgb"
                 android:layout_width="63dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_toStartOf="@+id/color_line_codeHexadecimal"
                 android:layout_centerVertical="true"
                 android:textSize="10sp"
@@ -58,7 +57,8 @@
                 android:id="@id/color_line_codeHexadecimal"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:textSize="12sp"

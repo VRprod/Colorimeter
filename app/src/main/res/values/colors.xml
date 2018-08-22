@@ -2,13 +2,13 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color> <!-- #3F51B5 -->
     <color name="colorPrimaryDark">#000000</color> <!-- #303F9F -->
-    <color name="colorAccent">#FF4081</color> <!-- #FF4081 -->
+    <color name="colorAccent">#33B5E5</color> <!-- #FF4081 -->
 
     <color name="red">#FF0000</color>
     <color name="green">#008000</color>
     <color name="blue">#0000FF</color>
-    <color name="grey">#C8C8C8</color>
     <color name="light_grey">#DCDCDC</color>
+    <color name="selected_line">#E0E0E0</color>
 
     <color name="black_overlay">#66000000</color>
 </resources>

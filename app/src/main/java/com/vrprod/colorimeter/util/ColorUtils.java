@@ -3,9 +3,24 @@ package com.vrprod.colorimeter.util;
 import com.vrprod.colorimeter.model.Color;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 public class ColorUtils {
+
+    public static boolean containsByCodeHexadecimal(String codeHexadecimal, Collection<Color> lstColors) {
+        if (codeHexadecimal == null || lstColors == null || lstColors.isEmpty()) {
+            return false;
+        }
+        boolean isTrouve = false;
+        Iterator<Color> iter = lstColors.iterator();
+        while (!isTrouve && iter.hasNext()) {
+            Color color = iter.next();
+            isTrouve = (color != null && color.getCodeHexadecimal() != null && color.getCodeHexadecimal().equals(codeHexadecimal));
+        }
+        return isTrouve;
+    }
 
     public static String generateCodeHexadecimal(int codeRgbRed, int codeRgbGreen, int codeRgbBlue) {
         return new StringBuilder("#")
@@ -33,6 +48,22 @@ public class ColorUtils {
             lstColors.add(new Color(null, data[i][0], data[i][1]));
         }
         return lstColors;
+    }
+
+    public static boolean removeByCodeHexadecimal(String codeHexadecimal, Collection<Color> lstColors) {
+        if (codeHexadecimal == null || lstColors == null || lstColors.isEmpty()) {
+            return false;
+        }
+        boolean isTrouve = false;
+        Iterator<Color> iter = lstColors.iterator();
+        while (!isTrouve && iter.hasNext()) {
+            Color color = iter.next();
+            if (color != null && color.getCodeHexadecimal() != null && color.getCodeHexadecimal().equals(codeHexadecimal)) {
+                iter.remove();
+                isTrouve = true;
+            }
+        }
+        return isTrouve;
     }
 
     private static String[][] data = new String[][] {

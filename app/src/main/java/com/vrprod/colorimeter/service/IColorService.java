@@ -7,7 +7,7 @@ import java.util.List;
 public interface IColorService {
 
     Color create(Color color);
-    boolean delete(Long id);
+    boolean deleteByCodeHexadecimal(String codeHexadecimal);
     List<Color> readAll();
     Color readById(Long id);
     boolean update(Color color);
