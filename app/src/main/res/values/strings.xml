@@ -2,18 +2,9 @@
     <string name="app_name">Colorimeter</string>
 
     <string name="visualization_text">Hello World !</string>
-    <string name="background">BACKGROUND</string>
-    <string name="text">TEXT</string>
-    <string name="with_text">With Text</string>
-    <string name="edit">Edit</string>
-    <string name="predefined">Predefined</string>
-    <string name="picker">Picker</string>
-    <string name="favorite">Favorite</string>
-    <string name="no_favorite">No Favorite</string>
-    <string name="color_saved">Color saved</string>
-    <string name="color_deleted">Color deleted</string>
-    <string name="error">Error</string>
 
+    <!-- Edit Fragment -->
+    <string name="edit">Edit</string>
     <string name="codeHexadecimal">Code Hexadecimal</string>
     <string name="codeHexadecimal_regex">^#([a-fA-F_0-9]){6}$</string>
     <string name="codeHexadecimal_error">Format : #000000</string>
@@ -22,6 +13,31 @@
     <string name="codeRgbBlue">Blue</string>
     <string name="codeRgb_regex">^[0-2]?[0-9]?[0-9]$</string>
     <string name="codeRgb_error">[0&#8211;255]</string>
+
+    <!-- Predefined Fragment -->
+    <string name="predefined">Predefined</string>
+
+    <!-- Picker Fragment -->
+    <string name="picker">Picker</string>
+
+    <!-- Favorite Fragment -->
+    <string name="favorite">Favorite</string>
+    <string name="no_favorite">No Favorite</string>
+    <string name="color_saved">Color saved</string>
+    <string name="color_deleted">Color deleted</string>
+    <string name="error">Error</string>
+
+    <!-- Add Color Dialog Fragment -->
+    <string name="add_color_dialog_fragment_title">New Color</string>
+    <string name="add_color_dialog_fragment_field_name">Name</string>
+    <string name="add_color_dialog_fragment_field_code_hexadecimal">Hexadecimal</string>
+    <string name="add_color_dialog_fragment_button_save">Save</string>
+    <string name="add_color_dialog_fragment_button_cancel">Cancel</string>
+
+    <!-- Others -->
+    <string name="background">BACKGROUND</string>
+    <string name="text">TEXT</string>
+    <string name="with_text">With Text</string>
 
     <!-- ImageButton Content Description -->
     <string name="contentDescription_button_back">Button Back</string>

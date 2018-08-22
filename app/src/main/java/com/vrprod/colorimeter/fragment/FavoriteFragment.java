@@ -5,7 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,9 +24,11 @@ import com.vrprod.colorimeter.service.impl.ColorService;
 
 import java.util.List;
 
-public class FavoriteFragment extends Fragment {
+public class FavoriteFragment extends Fragment implements AddColorDialogFragment.AddColorDialogListener {
     private static FavoriteFragment instance;
     private IColorService colorService;
+    private CoordinatorLayout fragmentFavorite;
+    RecyclerView recyclerView;
 
     public static FavoriteFragment getInstance(Context context) {
         if (instance == null) {
@@ -43,6 +45,9 @@ public class FavoriteFragment extends Fragment {
         // Init DataBinding
         FragmentFavoriteBinding binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_favorite, container, false);
+
+        // Init CoordinatorLayout
+        fragmentFavorite = binding.fragmentFavorite;
 
         // Init button Back
         binding.buttonBack.setOnClickListener(new View.OnClickListener() {
@@ -63,9 +68,8 @@ public class FavoriteFragment extends Fragment {
         } else {
             binding.lstColors.setVisibility(View.VISIBLE);
             binding.emptyView.setVisibility(View.GONE);
-            RecyclerView recyclerView = binding.lstColors;
+            recyclerView = binding.lstColors;
             recyclerView.setAdapter(new FavoriteRecyclerViewAdapter(lstColors));
-            recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         }
 
@@ -73,15 +77,19 @@ public class FavoriteFragment extends Fragment {
         binding.buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Color color = colorService.create(new Color(null, "Test", "#654321"));
+                new AddColorDialogFragment().show(FavoriteFragment.this.getChildFragmentManager(), "AddColorDialog");
             }
         });
 
         return binding.getRoot();
     }
 
-    public IColorService getColorService() {
-        return colorService;
+    @Override
+    public void onAddColorDialogPositiveClick(String name, String codeHexadecimal) {
+        Color color = colorService.create(new Color(null, name, codeHexadecimal));
+        ((FavoriteRecyclerViewAdapter) recyclerView.getAdapter()).getLstColors().add(color);
+        recyclerView.getAdapter().notifyDataSetChanged();
+        Snackbar.make(fragmentFavorite,R.string.color_saved, Snackbar.LENGTH_SHORT).show();
     }
 
     public void setColorService(IColorService colorService) {

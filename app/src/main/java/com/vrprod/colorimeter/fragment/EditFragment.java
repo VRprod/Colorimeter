@@ -50,7 +50,6 @@ public class EditFragment extends Fragment {
         // Init DataBinding
         final FragmentEditBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_edit, container, false);
         binding.setColor(mainActivity.getColor());
-        // binding.setTextColor(textColor);
 
         // Init Button Save
         binding.buttonSave.setOnClickListener(new View.OnClickListener() {

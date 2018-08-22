@@ -5,7 +5,6 @@
     <data>
         <import type="android.graphics.Color"/>
         <variable name="color" type="com.vrprod.colorimeter.model.Color"/>
-        <!-- <variable name="textColor" type="com.vrprod.colorimeter.model.Color"/> -->
     </data>
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/fragment_edit"
@@ -51,12 +50,6 @@
                 android:layout_above="@+id/edit_view"
                 android:gravity="center"
                 android:background="@{Color.parseColor(color.codeHexadecimal)}"/>
-                <!--
-                    android:text='@{textColor.active ? @string/visualization_text : ""}'
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    android:textColor="@{Color.parseColor(textColor.codeHexadecimal)}"
-                -->
 
             <LinearLayout
                 android:id="@id/edit_view"

@@ -4,16 +4,16 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DatabaseHandler extends SQLiteOpenHelper {
+public class ColorDatabaseHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    protected static final String DATABASE_NAME = "ColorimeterDatabase";
+    private static final String DATABASE_NAME = "colorimeter.db";
     protected static final String TABLE_COLOR = "COLOR";
     protected static final String COLUMN_ID = "ID";
     protected static final String COLUMN_NAME = "NAME";
     protected static final String COLUMN_CODE_HEXADECIMAL = "CODE_HEXADECIMAL";
 
-    public DatabaseHandler(Context context) {
+    public ColorDatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

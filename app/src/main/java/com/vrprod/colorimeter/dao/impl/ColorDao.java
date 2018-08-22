@@ -5,14 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.vrprod.colorimeter.config.DatabaseHandler;
+import com.vrprod.colorimeter.config.ColorDatabaseHandler;
 import com.vrprod.colorimeter.dao.IColorDao;
 import com.vrprod.colorimeter.model.Color;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ColorDao extends DatabaseHandler implements IColorDao {
+public class ColorDao extends ColorDatabaseHandler implements IColorDao {
 
     public ColorDao(Context context) {
         super(context);
