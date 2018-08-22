@@ -14,6 +14,7 @@ import com.vrprod.colorimeter.databinding.ActivityMainBinding;
 import com.vrprod.colorimeter.fragment.EditFragment;
 import com.vrprod.colorimeter.fragment.FavoriteFragment;
 import com.vrprod.colorimeter.fragment.PickerFragment;
+import com.vrprod.colorimeter.fragment.PredefinedFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,9 +37,12 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.item_edit:
                                 showFragment(EditFragment.getInstance());
                                 return true;
-                            case R.id.item_picker:
-                                showFragment(PickerFragment.getInstance());
+                            case R.id.item_predefined:
+                                showFragment(PredefinedFragment.getInstance());
                                 return true;
+//                            case R.id.item_picker:
+//                                showFragment(PickerFragment.getInstance());
+//                                return true;
                             case R.id.item_favorite:
                                 showFragment(FavoriteFragment.getInstance(getApplicationContext()));
                                 return true;

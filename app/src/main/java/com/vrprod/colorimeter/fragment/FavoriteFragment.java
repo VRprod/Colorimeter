@@ -5,6 +5,8 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -54,7 +56,7 @@ public class FavoriteFragment extends Fragment {
         });
 
         // Init RecyclerView
-        List<Color> lstColors = colorService.readAll();
+        final List<Color> lstColors = colorService.readAll();
         if (lstColors == null || lstColors.isEmpty()) {
             binding.lstColors.setVisibility(View.GONE);
             binding.emptyView.setVisibility(View.VISIBLE);
@@ -62,10 +64,19 @@ public class FavoriteFragment extends Fragment {
             binding.lstColors.setVisibility(View.VISIBLE);
             binding.emptyView.setVisibility(View.GONE);
             RecyclerView recyclerView = binding.lstColors;
-            recyclerView.setAdapter(new FavoriteRecyclerViewAdapter(colorService.readAll()));
+            recyclerView.setAdapter(new FavoriteRecyclerViewAdapter(lstColors));
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         }
+
+        // Init FloatingActionButton
+        binding.buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Color color = colorService.create(new Color(null, "Test", "#654321"));
+                lstColors.add(color);
+            }
+        });
 
         return binding.getRoot();
     }

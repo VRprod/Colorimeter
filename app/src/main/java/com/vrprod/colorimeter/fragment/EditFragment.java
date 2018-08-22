@@ -32,7 +32,7 @@ public class EditFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         if (backgroundColor == null) {
-            backgroundColor = new Color(null,"Black", "#000000");
+            backgroundColor = new Color(null,null, "#33B5E5");
         }
         if (textColor == null) {
             textColor = new Color(null, "White", "#FFFFFF");

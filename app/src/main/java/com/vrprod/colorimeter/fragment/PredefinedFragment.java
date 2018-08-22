@@ -12,11 +12,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vrprod.colorimeter.R;
+import com.vrprod.colorimeter.activity.MainActivity;
 import com.vrprod.colorimeter.adapter.PredefinedRecyclerViewAdapter;
+import com.vrprod.colorimeter.databinding.FragmentPickerBinding;
 import com.vrprod.colorimeter.databinding.FragmentPredefinedBinding;
 import com.vrprod.colorimeter.util.ColorUtils;
 
 public class PredefinedFragment extends Fragment {
+
+    private static PredefinedFragment instance;
+
+    public static PredefinedFragment getInstance() {
+        if (instance == null) {
+            instance = new PredefinedFragment();
+        }
+        return instance;
+    }
 
     @Nullable
     @Override
@@ -28,16 +39,20 @@ public class PredefinedFragment extends Fragment {
 
         // Init RecyclerView
         RecyclerView recyclerView = binding.listColors;
-        recyclerView.setAdapter(new PredefinedRecyclerViewAdapter(ColorUtils.getColors(), ((EditFragment) getParentFragment()).getBackgroundColor()));
+        recyclerView.setAdapter(new PredefinedRecyclerViewAdapter(ColorUtils.getColors(), null));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        // Init Button toggleDrawerLayout
-        // binding.buttonToggleDrawerLayout.setOnClickListener(new View.OnClickListener() {
-        //     public void onClick(View v) {
-        //         ((EditFragment) getParentFragment()).toggleDrawerLayout();
-        //     }
-        // });
+        // Init button Back
+        binding.buttonBack.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                MainActivity activity = (MainActivity) getActivity();
+                if (activity != null && activity.getBottomNavigationView() != null) {
+                    activity.getBottomNavigationView().setSelectedItemId(R.id.item_edit);
+                    activity.showFragment(EditFragment.getInstance());
+                }
+            }
+        });
 
         return binding.getRoot();
     }

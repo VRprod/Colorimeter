@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             android:layout_alignParentTop="true"
-            android:background="@android:color/background_light"
+            android:background="?android:attr/colorBackground"
             android:elevation="4dp">
 
             <TextView
@@ -50,7 +50,9 @@
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:paddingBottom="10dp"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            android:background="?android:attr/colorBackground"
+            android:elevation="4dp">
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/code_hexadecimal"

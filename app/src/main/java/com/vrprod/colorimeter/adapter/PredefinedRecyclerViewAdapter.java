@@ -45,7 +45,7 @@ public class PredefinedRecyclerViewAdapter extends RecyclerView.Adapter<Predefin
         return new PredefinedColorLineListener() {
             @Override
             public void onClick(Color color, Color colorLine) {
-                if (color.isActive()) {
+                if (color != null && color.isActive()) {
                     color.setCodeHexadecimal(colorLine.getCodeHexadecimal());
                 }
             }
